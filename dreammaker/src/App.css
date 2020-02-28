@@ -2,37 +2,120 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-id {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-password {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.login-btn {
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: green;
 }
 
-.App-link {
-  color: #61dafb;
+.signup-1 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signup-2 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.signup-3 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.signup-4 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.signup-5 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.signup-6 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.signup-7 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.signup-btn {
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: green;
+}
+
+.signup-7 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.signup-7 {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.Nonsignup-name {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.Nonsignup-gender {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.Nonsignup-age {
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.Nonsignup-btn {
+  width: 300px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: green;
 }
