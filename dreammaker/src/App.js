@@ -3,13 +3,18 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Nonsignup from "./pages/Nonsignup";
+//import Sub from "./components/SubApp";
+import Result from "./components/ResultPage";
+import Surbey from "./components/MainSurvey";
 import { Mypage } from "./pages/Mypage";
 import { Logout } from "./pages/Logout";
+
 //! package 설치
 //! npm install react-router-dom
 //! npm install axios
 
 class App extends React.Component {
+
   state = {
     //? isLogin 은 로그인상태를 핸들링하기위한 변수
     isLogin: false,
@@ -36,6 +41,7 @@ class App extends React.Component {
       age: ""
     }
   };
+
   //? 로그인 버튼 클릭시 state 에 로그인상태를 true 로 바꾼다.
   loginStateUpdate() {
     this.setState({
@@ -87,7 +93,7 @@ class App extends React.Component {
     //! 이동경로
     //! home(로그인) -> mypage -> question
     //! home(로그인) -> signup -> home(로그인) -> mypage -> question
-    //! home(로그인) -> Nonsignup  -> question
+
     return (
       <div>
         <Switch>
@@ -101,16 +107,47 @@ class App extends React.Component {
               />
             )}
           />
+
           <Route
             exact
             path="/signup"
             render={() => <Signup isLogin={this.state.isLogin} />}
           />
+
           <Route
             exact
             path="/nonsignup"
             render={() => <Nonsignup isLogin={this.state.isLogin} />}
           />
+
+
+
+{/* 
+          <Route
+            exact
+            path="/subApp"
+            render={() => <Sub isLogin={this.state.isLogin} />}
+          /> */}
+
+
+          {/* 설문 페이지로 넘어갈 수 있게 하는 Route 부분 입니다. */}
+          <Route
+            exact
+            path="/survey"
+            render={() => <Surbey />}
+          />
+
+
+
+          {/* 결과 페이지로 넘어갈 수 있게 하는  Route 부분 입니다. */}
+          <Route
+            exact
+            path="/result"
+            render={() => <Result />}
+          />
+
+
+            
           <Route
             exact
             path="/mypage"
@@ -135,12 +172,15 @@ class App extends React.Component {
             path="/"
             render={() => {
               if (this.state.isLogin) {
+                console.log("현재 눌려지는 것", this.state.isLogin);
                 return <Redirect to="/mypage" />;
               }
               return <Redirect to="/home" />;
             }}
           />
         </Switch>
+
+
       </div>
     );
   }
