@@ -119,3 +119,27 @@
   border-radius: 5px;
   background-color: green;
 }
+
+.mypage {
+  text-shadow: black;
+  text-size-adjust: 200;
+  font-size: 50px;
+}
+
+.mypage-logout {
+  width: 300px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: green;
+  text-size-adjust: 150;
+}
+
+.mypage-question {
+  width: 300px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: green;
+  text-size-adjust: 150;
+}
