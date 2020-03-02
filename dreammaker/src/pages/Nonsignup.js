@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, withRouter } from "react-router-dom";
 class Nonsignup extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class Nonsignup extends React.Component {
     if (this.state.isNonSignUp) {
       return (
         <div>
-          <Redirect to="/home" />
+          <Redirect to="/subApp" />
         </div>
       );
     }
@@ -25,7 +25,12 @@ class Nonsignup extends React.Component {
       <div>
         <center>
           <h1>Non Sign Up</h1>
-          <form>
+          <form onSubmit = {event => {
+            event.preventDefault();
+             this.props.history.push('/survey');
+            //this.props.history.push('/subApp');
+          }}>
+
             <div>
               <input
                 className="Nonsignup-name"
@@ -61,4 +66,4 @@ class Nonsignup extends React.Component {
   }
 }
 
-export default Nonsignup;
+export default withRouter(Nonsignup);

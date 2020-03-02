@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import "../App.css";
+// import "../App.css";
+import "../css/Result.css";
+import "../css/noscript.css";
 class Signup extends React.Component {
   constructor(props) {
     super(props);
