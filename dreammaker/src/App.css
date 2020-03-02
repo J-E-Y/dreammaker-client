@@ -120,6 +120,71 @@
   background-color: green;
 }
 
+
+.Sub_app {
+  margin: 100px;
+  background-color: seagreen;
+  border: 10px black solid ;
+  border-radius:20px;
+  width: auto;
+  height: 500px;
+}
+.Sub_app_title{
+  background-color: burlywood;
+ 
+  width: auto;
+  height: fit-content;
+}
+
+
+.Question-Img {
+  background-color: aqua;
+  width: fit-content;
+  height: fit-content;  
+}
+
+.Question-name {
+  background-color: burlywood;
+  width: fit-content;
+  height: fit-content;
+}
+.Question-content{
+  background-color: sandybrown;
+  width: fit-content;
+  height: fit-content;
+}
+
+.Survey-form{
+  border: 10px black solid ;
+  border-radius:20px;
+}
+
+.result-title {
+  
+}
+
+.result-message {
+  
+}
+
+.result-job {
+  
+}
+
+
+
+.job-img{
+  width: 100px; 
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+
+
+/* //! 의영님 작업부분 */
+
 .mypage {
   text-shadow: black;
   text-size-adjust: 200;
@@ -143,3 +208,4 @@
   background-color: green;
   text-size-adjust: 150;
 }
+

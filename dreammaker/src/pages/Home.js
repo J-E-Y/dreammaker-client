@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import "../App.css";
+import "../css/Result.css";
+import "../css/noscript.css";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -94,7 +96,7 @@ class Home extends React.Component {
               <Link to="/signup">회원가입</Link>
             </div>
             <div>
-              <Link to="/Nonsignup">비회원가입후 검사시작</Link>
+              <button type="submit"><Link to="/Nonsignup">비회원가입후 검사시작</Link></button>
             </div>
           </center>
         </div>
