@@ -6,8 +6,9 @@ import Nonsignup from "./pages/Nonsignup";
 //import Sub from "./components/SubApp";
 import Result from "./components/ResultPage";
 import Surbey from "./components/MainSurvey";
+import { Mypage } from "./pages/Mypage";
+import { Logout } from "./pages/Logout";
 
-// import { Mypage } from "./pages/Mypage";
 //! package 설치
 //! npm install react-router-dom
 //! npm install axios
@@ -20,15 +21,24 @@ class App extends React.Component {
     //? NonisLogin 은 로그인상태를 핸들링하기위한 변수
     NonisLogin: false,
     //? 회원가입시 작성되는 info
+    // userinfo: {
+    //   id: "",
+    //   password1: "",
+    //   password2: "",
+    //   name: "",
+    //   mobile: "",
+    //   email: "",
+    //   gender: "",
+    //   age: ""
     userinfo: {
       id: "",
       password1: "",
       password2: "",
       name: "",
+      moblie: "",
+      email: "",
       gender: "",
-      age: "",
-      mobile: "",
-      email: ""
+      age: ""
     }
   };
 
@@ -36,6 +46,42 @@ class App extends React.Component {
   loginStateUpdate() {
     this.setState({
       isLogin: true
+    });
+  }
+  //? Logout.js 함수에서 사용하기위한 메소드
+  //? 로그아웃버튼을 누르면 로그인상태에서 로그아웃상태로 바꾼다.
+  //? 만약 로그인상태라면
+  //? upDate() 함수를 사용해 isLogin : false로 바꿔서 "/" 보내버린다.
+
+  update() {
+    if (this.state.isLogin === false) {
+      this.setState({
+        isLogin: true
+      });
+    } else {
+      this.setState({ isLogin: false });
+    }
+  }
+  //? userInfoUpdate  함수는 사용자가 Mypage 에서 정보를 보여주기 위한 함수이다.
+  //? 사용자가 로그인버튼을 누르면 정보는 서버로 전송된다.
+  //? 서버는 정보를 확인하고 맞으면 응답 200 그리고 유저 정보들이 담긴 객체를 준다.
+  //? 이객체를  userInfoUpdate(여기) 인자값으로 넣어서 실행시킨다.
+  //? 그럼 App.js  state  안에 값이 저장되고
+  //? 그것을 mypage 에 보여주는 것이다.
+  userInfoUpdate(name, age, gender, moblie) {
+    this.setState({
+      userinfo: {
+        name: name,
+        age: age,
+        gender: gender,
+        moblie: moblie
+      }
+    });
+  }
+  //? 비회원 가입시 사용될 함수
+  NonisLoginStateUpdate() {
+    this.setState({
+      NonisLogin: true
     });
   }
 
@@ -47,8 +93,6 @@ class App extends React.Component {
     //! 이동경로
     //! home(로그인) -> mypage -> question
     //! home(로그인) -> signup -> home(로그인) -> mypage -> question
-    //! home(로그인) -> Nonsignup -> mypage -> question
-
 
     return (
       <div>
@@ -59,6 +103,7 @@ class App extends React.Component {
               <Home
                 isLogin={this.state.isLogin}
                 loginStateUpdate={this.loginStateUpdate.bind(this)}
+                userInfoUpdate={this.userInfoUpdate.bind(this)}
               />
             )}
           />
@@ -103,6 +148,26 @@ class App extends React.Component {
 
 
             
+          <Route
+            exact
+            path="/mypage"
+            render={() => (
+              <Mypage
+                isLogin={this.state.isLogin}
+                userinfo={this.state.userinfo}
+              />
+            )}
+          />
+          <Route
+            path="/logout"
+            render={() => (
+              <Logout
+                isLogin={this.state.isLogin}
+                loginStateUpdate={this.loginStateUpdate.bind(this)}
+                upDate={this.update.bind(this)}
+              />
+            )}
+          />
           <Route
             path="/"
             render={() => {
