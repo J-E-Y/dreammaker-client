@@ -1,27 +1,30 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-
 import "../css/Result.css";
 import "../css/noscript.css";
-//import "../App.css";
-
+import "../App.css";
 const axios = require("axios");
 
 // axios.defaults.withCredentials = true;
-
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isSignUp: false,
+      isPassword: false,
+      passwordMessage: null,
+      showStore2: false,
+      idMessage: "",
+      showStore: false,
+      arr: [],
       id: "",
       password1: "",
       confirmPassword: "",
       name: "",
       moblie: "",
       email: "",
-      gender: "",
+      // gender: "",
       age: ""
     };
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -29,6 +32,26 @@ class Signup extends React.Component {
   }
   handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
+    if (key === "id") {
+      axios
+        .post(
+          "http://15.165.161.83:5000/user/idcheck",
+          {
+            real_user_id: e.target.value
+          },
+          {
+            withCredentials: true
+          }
+        )
+        .then(res => {
+          if (res.data !== "사용가능하지 않는 아이디 입니다. ") {
+            this.setState({ showStore2: true });
+            this.setState({ idMessage: res.data });
+          } else {
+            this.setState({ showStore2: false });
+          }
+        });
+    }
   };
   //? 성별(gender)input 을 핸들링하기위한 로직이 필요함
   //? ----------------------------------------
@@ -45,15 +68,56 @@ class Signup extends React.Component {
   //  email : test@gmail.com,
   //  gender : "man" ,
   //  age  : 4
-  // }
+  // }
+  //? setGender 함수는
+  //? input='radio' 박스를 클릭하면 gender 에 Male Female 이 담긴다
   setGender(event) {
     this.setState({ gender: event.target.value });
     console.log("event.target.value: ", event.target.value);
   }
-
+  checkPassWord() {
+    for (let key in this.state) {
+      if (this.state[key] === "") {
+        alert(key + "가 입력되지 않았습니다.");
+      }
+    }
+    if (
+      this.state.id !== "" &&
+      this.state.password1 !== "" &&
+      this.state.confirmPassword !== "" &&
+      // this.state.gender !== "" &&
+      this.state.name !== "" &&
+      this.state.moblie !== "" &&
+      this.state.email !== "" &&
+      // gender: "",
+      this.state.age !== ""
+    ) {
+      alert("회원가입이 완료되었습니다. ");
+      this.setState({ isPassword: true });
+    }
+  }
+  passwordCheck() {
+    axios
+      .post(
+        "http://15.165.161.83:5000/user/idcheck",
+        {
+          real_user_id: this.state.id
+        },
+        {
+          withCredentials: true
+        }
+      )
+      .then(res => {
+        if (res.data === "사용가능한 아이디입니다.") {
+          this.setState({ showStore2: true });
+        } else {
+          this.setState({ showStore2: false });
+        }
+      });
+  }
   render() {
-    console.log("this.state@@: ", this.state);
-    if (this.state.isSignUp) {
+    console.log("this.state: ", this.state);
+    if (this.state.isSignUp && this.state.isPassword) {
       return (
         <div>
           <Redirect to="/home" />
@@ -68,10 +132,11 @@ class Signup extends React.Component {
     return (
       <div>
         <center>
-          <h1>회원가입을 해주세요</h1>
+          <h1 style={{ color: "white" }}>회원가입을 해주세요</h1>
           <form
             onSubmit={e => {
               e.preventDefault();
+              this.checkPassWord();
               const {
                 id,
                 password1,
@@ -115,7 +180,8 @@ class Signup extends React.Component {
               //!  axios 서버 post 요청방법
               axios
                 .post(
-                  "http://localhost:5000/user/signup",
+                  "http://15.165.161.83:5000/user/signup",
+
                   {
                     real_user_id: id,
                     password: password1,
@@ -142,15 +208,27 @@ class Signup extends React.Component {
             }}
           >
             <div>
-              아이디 :
+              아이디
               <input
                 className="signup-id"
                 type="id"
                 onChange={this.handleInputValue("id")}
               ></input>
+              {
+                <span
+                  className="checkPassword"
+                  style={{
+                    fontSize: "20px",
+                    color: "red",
+                    display: this.state.showStore2 ? "block" : "none"
+                  }}
+                >
+                  {this.state.idMessage}
+                </span>
+              }
             </div>
             <div>
-              비밀번호 :
+              비밀번호
               <input
                 className="signup-password"
                 type="password"
@@ -158,15 +236,36 @@ class Signup extends React.Component {
               ></input>
             </div>
             <div>
-              비밀번호 확인 :
+              비밀번호 확인
               <input
                 className="signup-cofirm-password"
                 type="password"
                 onChange={this.handleInputValue("confirmPassword")}
+                onKeyUp={() => {
+                  if (this.state.password1 === this.state.confirmPassword) {
+                    this.setState({ showStore: true });
+                  } else {
+                    this.setState({
+                      showStore: false,
+                      passwordMessage: "비밀번호가 일치하지 않습니다."
+                    });
+                  }
+                }}
               ></input>
             </div>
+            <span
+              className="success"
+              style={{
+                fontSize: "20px",
+                color: "red",
+                display: this.state.showStore ? "none" : "block"
+              }}
+            >
+              {this.state.passwordMessage}
+            </span>
+
             <div>
-              이름 :
+              이름
               <input
                 className="signup-name"
                 type="text"
@@ -174,7 +273,7 @@ class Signup extends React.Component {
               ></input>
             </div>
             <div>
-              휴대폰 번호 :
+              휴대폰 번호
               <input
                 className="signup-mobile"
                 type="text"
@@ -182,7 +281,7 @@ class Signup extends React.Component {
               ></input>
             </div>
             <div>
-              이메일 주소 :
+              이메일 주소
               <input
                 className="signup-email"
                 type="email"
@@ -194,16 +293,8 @@ class Signup extends React.Component {
               <input type="radio" value="남" name="gender" /> 남
               <input type="radio" value="여" name="gender" /> 여
             </div>
-            {/* <div>
-              성별 :
-              <input
-                className="signup-gender"
-                type="text"
-                onChange={this.handleInputValue("gender")}
-              ></input>
-            </div> */}
             <div>
-              나이 :
+              나이
               <input
                 className="signup-age"
                 type="text"
@@ -215,8 +306,16 @@ class Signup extends React.Component {
               <Link to="/login">이미 계정이 있나요?</Link>
             </div>
 
-            <button className="signup-btn" type="submit">
-              회원가입
+            <button
+              style={{
+                fontSize: "35px",
+                height: "100px",
+                width: "100px"
+              }}
+              className="signup-btn"
+              type="submit"
+            >
+              회원가입하기
             </button>
           </form>
         </center>
@@ -226,3 +325,11 @@ class Signup extends React.Component {
 }
 
 export default Signup;
+
+// <div>
+// 성별:
+// <div>
+//   <button onChange={this.setGender.bind(this)}>남</button>
+//   <button onChange={this.setGender.bind(this)}>남</button>
+// </div>
+// </div>
