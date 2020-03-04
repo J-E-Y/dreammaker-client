@@ -105,4 +105,6 @@ class Nonsignup extends React.Component {
   }
 }
 
+
 export default Nonsignup;
+
