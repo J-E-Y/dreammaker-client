@@ -37,7 +37,8 @@ export function Mypage(props) {
     return (
       <div>
         <center>
-          <h1>Mypage</h1>
+          <h1 style={{ color: "white" }}>나의 정보</h1>
+
           <div className="logo">
             <img src={logo} alt="logo" width="300" height="350" />
           </div>
@@ -46,15 +47,27 @@ export function Mypage(props) {
             <div className="mypage-age">나이: {props.userinfo.age}</div>
             <div className="mypage-gender">성별: {props.userinfo.gender}</div>
             <div className="mypage-moblie">
-              핸드폰번호: {props.userinfo.moblie}
+              핸드폰번호:
+              {props.userinfo.moblie}
             </div>
           </div>
-          <div className="mypage-question">
-            <Link to="/question">검사하러가기</Link>
-          </div>
-          <div className="mypage-logout">
+          <span
+            style={{
+              margin: "32px",
+              fontSize: "35px"
+            }}
+          >
+            <Link to="/survey">검사하러가기</Link>
+          </span>
+          <span
+            style={{
+              margin: "32px",
+              fontSize: "35px"
+            }}
+          >
             <Link to="/logout">로그아웃하기</Link>
-          </div>
+          </span>
+          <span></span>
         </center>
       </div>
     );

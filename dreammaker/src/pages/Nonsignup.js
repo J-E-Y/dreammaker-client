@@ -1,5 +1,7 @@
 import React from "react";
-import { Redirect, Link, withRouter } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+
+const axios = require("axios");
 class Nonsignup extends React.Component {
   constructor(props) {
     super(props);
@@ -16,13 +18,14 @@ class Nonsignup extends React.Component {
     this.setState({ [key]: e.target.value });
   };
   render() {
+    console.log("this.state: ", this.state);
     //? 만약 사용자가 정보를 입력하고 완료 검사시작하기 버튼을 누르면
     //? isNonSignUp : true 로 바뀐다.
     //? 그러면 Redirect 로 question페이지로 이동시킨다.
     if (this.state.isNonSignUp) {
       return (
         <div>
-          <Redirect to="/question" />
+          <Redirect to="/survey" />
         </div>
       );
     }
@@ -34,13 +37,29 @@ class Nonsignup extends React.Component {
       //? 비회원가입이 완료시킨다.
       <div>
         <center>
-          <h1>Non Sign Up</h1>
-          <form onSubmit = {event => {
-            event.preventDefault();
-             this.props.history.push('/survey');
-            //this.props.history.push('/subApp');
-          }}>
-
+          <h1 style={{ color: "white" }}>비회원가입</h1>
+          <form
+            onSubmit={event => {
+              event.preventDefault();
+              // this.props.history.push("/survey");
+              const { name, gender, age } = this.state;
+              axios
+                .post(
+                  "http://15.165.161.83:5000/nonuser/signup",
+                  {
+                    name: name,
+                    gender: gender,
+                    age: age
+                  },
+                  { withCredentials: true }
+                )
+                .then(res => {
+                  if (res.data.non_user_id) {
+                    this.setState({ isNonSignUp: true });
+                  }
+                });
+            }}
+          >
             <div>
               이름 :
               <input
@@ -68,8 +87,16 @@ class Nonsignup extends React.Component {
             <div>
               <Link to="/login">이미 계정이 있나요?</Link>
             </div>
-            <button className="Nonsignup-btn" type="submit">
-              완료! 검사 시작하기
+            <button
+              style={{
+                fontSize: "35px",
+                height: "100px",
+                width: "100px"
+              }}
+              className="Nonsignup-btn"
+              type="submit"
+            >
+              검사 시작
             </button>
           </form>
         </center>
@@ -78,4 +105,6 @@ class Nonsignup extends React.Component {
   }
 }
 
-export default withRouter(Nonsignup);
+
+export default Nonsignup;
+
