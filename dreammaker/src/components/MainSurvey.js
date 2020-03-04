@@ -5,6 +5,8 @@ import ResultPage from "./ResultPage";
 import { Redirect, Link, withRouter, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import styled from "styled-components";
+
+
 class MainSurvey extends Component {
   state = {
     currentQuestion: 0, // 배열 인덱스 초기 번호 [0]   ->  SurveyData[0]
@@ -17,6 +19,7 @@ class MainSurvey extends Component {
     answer_table: null //뿌리지않은 질문데이터 객체타입
   };
 
+ 
   filetquestionTable = async (n1, n2) => {
     const { answer_table } = this.state;
     let object = {};
@@ -233,7 +236,7 @@ class MainSurvey extends Component {
     for (let key in obj_result) {
       object_length++;
     }
-    debugger;
+    //debugger;
     if (
       this.state.currentQuestion === this.state.question_data.length - 1 &&
       object_length <= 2
@@ -243,12 +246,6 @@ class MainSurvey extends Component {
       });
     }
   };
-
-
-
-  
-
-
 
   render() {
     console.log(this.state);
@@ -266,7 +263,7 @@ class MainSurvey extends Component {
      `text-decoration-color: red`
 
 
- // 오브젝트의 유형별 갯수를 알기위한 로직 (객체타입이기 때문에ㅐ )
+
     let object_length = 0;
     for (let key in obj_result) {
       object_length++;
@@ -339,8 +336,12 @@ class MainSurvey extends Component {
          <div className='choiceBTN-group'>
           {/* //!이전 버튼 클릭시에 이전 페이지로 넘어가기*/}
 
-          
-          {currentQuestion === 0 && (
+
+          {/* 다음버튼 클릭시에 질문이 더 남았다면 다음 질문이 나오게 하고, 총 질문의 갯수를 줄여나간다.(끝까지)*/}
+          {(currentQuestion < this.state.question_data.length - 1 ||
+            object_length > 2) && (
+
+
             // 다음 버튼
     
             
@@ -362,9 +363,9 @@ class MainSurvey extends Component {
 
 
             // 다음 버튼
-       
-
+      
             <button
+
               className="prev_button"
               // 버튼은 답 클릭전에는 비활성화 되어있다. 클릭시에 활성화된다.
               disabled={this.state.disabled}
@@ -396,9 +397,6 @@ class MainSurvey extends Component {
           )}
 
      
-    
-
-
 
           {/* //! 질문지의 마지막에는 finish 버튼 작동하게 한다. */}
           {/* //adding a finish button */}
