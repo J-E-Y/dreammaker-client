@@ -14,12 +14,9 @@ import { Logout } from "./pages/Logout";
 //! npm install axios
 
 class App extends React.Component {
-
   state = {
     //? isLogin 은 로그인상태를 핸들링하기위한 변수
     isLogin: false,
-    //? NonisLogin 은 로그인상태를 핸들링하기위한 변수
-    NonisLogin: false,
     //? 회원가입시 작성되는 info
     // userinfo: {
     //   id: "",
@@ -114,40 +111,21 @@ class App extends React.Component {
             render={() => <Signup isLogin={this.state.isLogin} />}
           />
 
-          <Route
-            exact
-            path="/nonsignup"
-            render={() => <Nonsignup isLogin={this.state.isLogin} />}
-          />
+          <Route exact path="/nonuser/signup" render={() => <Nonsignup />} />
 
-
-
-{/* 
+          {/* 
           <Route
             exact
             path="/subApp"
             render={() => <Sub isLogin={this.state.isLogin} />}
           /> */}
 
-
           {/* 설문 페이지로 넘어갈 수 있게 하는 Route 부분 입니다. */}
-          <Route
-            exact
-            path="/survey"
-            render={() => <Surbey />}
-          />
-
-
+          <Route exact path="/survey" render={() => <Surbey />} />
 
           {/* 결과 페이지로 넘어갈 수 있게 하는  Route 부분 입니다. */}
-          <Route
-            exact
-            path="/result"
-            render={() => <Result />}
-          />
+          <Route exact path="/result" render={() => <Result />} />
 
-
-            
           <Route
             exact
             path="/mypage"
@@ -179,8 +157,6 @@ class App extends React.Component {
             }}
           />
         </Switch>
-
-
       </div>
     );
   }
