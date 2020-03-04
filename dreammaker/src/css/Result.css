@@ -102,12 +102,21 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
+
+	
+	/* !배경 그라데이션 부분 담당 */
 	body {
-		background-color: #935d8c;
+		/* background-color: #935d8c;
 		background-image: url("../images/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 		background-image: url("../images/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 		background-image: url("../images/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("../images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("../images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%); */
+	
+		background-color: #397fb3; /* For browsers that do not support gradients */
+		background-image: url("../images/overlay.png"),-webkit-linear-gradient(45deg, #e37682  15% , #397fb3 85%) ; /* For Safari 5.1 to 6.0 */
+		background-image: url("../images/overlay.png"),-ms-linear-gradient(45deg, #e37682   15%, #397fb3 85%); /* For Opera 11.1 to 12.0 */
+		background-image: url("../images/overlay.png"),-moz-linear-gradient(45deg, #e37682  15%, #397fb3 85%); /* For Firefox 3.6 to 15 */
+		background-image: url("../images/overlay.png"),linear-gradient(45deg, #e37682 15%, #397fb3 85%); /* Standard syntax */
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -124,12 +133,16 @@ input, select, textarea {
 
 
 /* Type */
-
+ /* !! 배경 전체의 색 담당. 여기 배경 설정하고 106번 줄 지우면 색상이 변한다. */
 	body {
-		background-color: #935d8c;
+		/* !그라데이션 배경과 색을 맞춰줘야한다. */
+		background-color: #397fb3;
+		
+		/* ? 일반적 텍스트 색이 변한다. */
 		color: rgba(255, 255, 255, 0.65);
 	}
-
+	
+ /* !! 폰트 담당 */
 	body, input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 17pt;
@@ -167,7 +180,9 @@ input, select, textarea {
 		-ms-transition: color 0.2s ease, border-bottom 0.2s ease;
 		transition: color 0.2s ease, border-bottom 0.2s ease;
 		text-decoration: none;
-		border-bottom: dotted 1px;
+		
+		/*//!링크의 밑줄 제거 
+	    border-bottom: dotted 1px; */
 		color: inherit;
 	}
 
@@ -3340,7 +3355,7 @@ input, select, textarea {
 				}
 
 		}
-
+/* 
 /* !Main */
 
 	#main {
@@ -3556,7 +3571,7 @@ input, select, textarea {
 
 		#main header.major h2:after {
 			background-color: #dddddd;
-			background-image: -moz-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
+			background-image: -moz-linear-gradient(90deg, 2, #a89cc8, #8cc9f0);
 			background-image: -webkit-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
 			background-image: -ms-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
 			background-image: linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
@@ -3691,7 +3706,7 @@ input, select, textarea {
         
 
 
-
+ */
 
 /*! Footer */
 
@@ -3817,12 +3832,13 @@ input, select, textarea {
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 50px;
 	border-bottom-left-radius: 20px;
-    border : 2px solid white; 
+
 }
 
 
 /* !질문지 전체 테두리 영역 */
 .question-form{
+	/* background-color: goldenrod; */
 	border : 3px solid white;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 20px;
@@ -3833,34 +3849,66 @@ input, select, textarea {
 
 }
 
-
-.test123 {
-	display: none;
+/* ! 예, 아니오, 모르겠습니다 부분
+   ! 각각 버튼 묶는 클래스 */
+.answerOptions{
+	/* background-color: gray;  */
+	margin-left: 20%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	width: 60%;
 }
 
 
 
-#q2-area{
-	display: none;
-}
-
-
-#q3-area{
-	display: none;
-}
-
-
-#q4-area{
-	display: none;
+/* ! 예, 아니오, 모르겠습니다 부분
+   ? 버튼 조작 클래스 */
+.ans_msg {
+	width: 40%;
+	margin-left: 28%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	background-color: black;
 }
 
 
 
-.hide-true  {
-	display: none;
-  }
 
 
-.helpme {
-	display: '';
+/* ! 예, 아니오, 모르겠습니다 부분
+   ! 각각 버튼 묶는 클래스 */
+   .choiceBTN-group {
+	/* background-color: gray;  */
+	margin-left:  39%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	width: 20%;
+}
+
+
+.prev_button {
+	margin-left: 8%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background-color: red;
+	
+ }
+
+ 
+.next_button {
+	margin-left: 28%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	background-color: red;
+}
+
+
+
+.sc-AxiKw{
+	text-decoration: none; color: grey;
+}
+
+.lbfQXB{
+
+	text-decoration-line:  red;
 }
