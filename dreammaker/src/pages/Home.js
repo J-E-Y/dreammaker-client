@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../css/Result.css";
 import "../css/noscript.css";
+import log2 from "../log2.png";
+// const axios = require("axios");
 
 class Home extends React.Component {
   constructor(props) {
@@ -30,16 +32,34 @@ class Home extends React.Component {
       //? redirect 로 사용자를 mypage 로 이동시킨다.
     } else
       return (
-        <div>
+        <div
+          style={{
+            marginBottom: "30px",
+            marginTop: "30px",
+            borderRadius: "10px"
+          }}
+        >
           <center>
-            <h1>Dreammaker</h1>
+            <h1
+              className="main-home"
+              style={{
+                marginTop: "70px",
+
+                fontSize: "5em",
+                color: "white"
+              }}
+            >
+              Dreammaker
+            </h1>
+            <img src={log2} alt="log2" width="200" height="200" />
             <form
+              style={{ marginLight: "200px" }}
               onSubmit={e => {
                 e.preventDefault();
 
                 const { id, password } = this.state;
                 fetch(
-                  "http://localhost:5000/user/signin",
+                  "http://15.165.161.83:5000/user/signin",
                   {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -70,21 +90,30 @@ class Home extends React.Component {
                       );
                     }
                   });
+                //! ??????????how to get infro from server?
+                // .then(data => {
+                //   axios
+                //     .get("http://15.165.161.83:5000/user/info")
+                //     .then(function(response) {
+                //       // handle success
+                //       console.log("data:", response);
+                //     });
+                // });
               }}
             >
               <div>
+                아이디
                 <input
                   className="login-id"
                   type="text"
-                  placeholder="아이디를 입력해주세요"
                   onChange={this.handleInputValue("id")}
                 ></input>
               </div>
               <div>
+                비밀번호
                 <input
                   className="login-password"
                   type="password"
-                  placeholder="비밀번호를 입력 해주세요"
                   onChange={this.handleInputValue("password")}
                 ></input>
               </div>
@@ -93,10 +122,22 @@ class Home extends React.Component {
               </button>
             </form>
             <div>
-              <Link to="/signup">회원가입</Link>
-            </div>
-            <div>
-              <button type="submit"><Link to="/Nonsignup">비회원가입후 검사시작</Link></button>
+              <span
+                style={{
+                  margin: "32px",
+                  fontSize: "35px"
+                }}
+              >
+                <Link to="/signup">회원가입</Link>
+              </span>
+              <span
+                style={{
+                  margin: "32px",
+                  fontSize: "35px"
+                }}
+              >
+                <Link to="/nonuser/signup">비회원가입</Link>
+              </span>
             </div>
           </center>
         </div>

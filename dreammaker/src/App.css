@@ -17,11 +17,11 @@
 }
 
 .login-btn {
-  width: 200px;
-  height: 30px;
+  width: 207px;
+  height: 63px;
   margin: 5px;
   border-radius: 5px;
-  background-color: green;
+  font-size: 20px;
 }
 
 .signup-1 {
@@ -78,7 +78,6 @@
   height: 30px;
   margin: 5px;
   border-radius: 5px;
-  background-color: green;
 }
 
 .signup-7 {
@@ -117,30 +116,27 @@
   height: 30px;
   margin: 5px;
   border-radius: 5px;
-  background-color: green;
 }
-
 
 .Sub_app {
   margin: 100px;
   background-color: seagreen;
-  border: 10px black solid ;
-  border-radius:20px;
+  border: 10px black solid;
+  border-radius: 20px;
   width: auto;
   height: 500px;
 }
-.Sub_app_title{
+.Sub_app_title {
   background-color: burlywood;
- 
+
   width: auto;
   height: fit-content;
 }
 
-
 .Question-Img {
   background-color: aqua;
   width: fit-content;
-  height: fit-content;  
+  height: fit-content;
 }
 
 .Question-name {
@@ -148,47 +144,39 @@
   width: fit-content;
   height: fit-content;
 }
-.Question-content{
+.Question-content {
   background-color: sandybrown;
   width: fit-content;
   height: fit-content;
 }
 
-.Survey-form{
-  border: 10px black solid ;
-  border-radius:20px;
+.Survey-form {
+  border: 10px black solid;
+  border-radius: 20px;
 }
 
-.result-title {
-  
+/* .result-title {
 }
 
 .result-message {
-  
 }
 
 .result-job {
-  
-}
+} */
 
-
-
-.job-img{
-  width: 100px; 
+.job-img {
+  width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
 }
 
-
-
-
 /* //! 의영님 작업부분 */
 
 .mypage {
-  text-shadow: black;
+  text-shadow: white;
   text-size-adjust: 200;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .mypage-logout {
@@ -196,7 +184,7 @@
   height: 30px;
   margin: 5px;
   border-radius: 5px;
-  background-color: green;
+
   text-size-adjust: 150;
 }
 
@@ -205,7 +193,9 @@
   height: 30px;
   margin: 5px;
   border-radius: 5px;
-  background-color: green;
   text-size-adjust: 150;
 }
 
+.Radio-BTN {
+  font-size: 200px;
+}
