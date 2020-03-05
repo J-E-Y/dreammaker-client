@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+
 import App from "./App";
 
 //? 브라우저라우터 모듈을 사용한다.

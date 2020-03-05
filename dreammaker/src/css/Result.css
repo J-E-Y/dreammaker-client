@@ -3835,19 +3835,76 @@ input, select, textarea {
 
 /* !이전 버튼 핸들링 */
     .prev_button {
-      margin-left: 8%;
-      margin-top: 5%;
-      margin-bottom: 5%;
-      background-color: red;
-      
-     }
+		/* width: 250px;
+		height: 75px; */
+	  margin-top: 3%;
+	  font-size: 30px;
+      /* margin-bottom: 5%; */
+	  background-color: #935d8c;
+	  border : 2px solid white;
+	  border-top-left-radius: 30px;
+	  border-top-right-radius: 30px;
+	  border-bottom-right-radius: 30px;
+	  border-bottom-left-radius: 30px;
+      background-color: #397fb3; /* For browsers that do not support gradients */
+		background-image: url("../images/overlay.png"),
+		-webkit-linear-gradient(45deg, #aa4b6b  25% ,#3b8d99 85%) ; /* For Safari 5.1 to 6.0 */
+		background-image: url("../images/overlay.png"),
+		-ms-linear-gradient(45deg, #aa4b6b  25%, #3b8d99 85%); /* For Opera 11.1 to 12.0 */
+		background-image: url("../images/overlay.png"),
+		-moz-linear-gradient(45deg, #aa4b6b  25%, #3b8d99 85%); /* For Firefox 3.6 to 15 */
+		background-image: url("../images/overlay.png"),
+		linear-gradient(45deg, #aa4b6b 25%,#3b8d99 85%); 
+	 }
+
+
+
+/* !첫번 째 질문 이전 버튼 핸들링 */
+	 .backHome_button{
+	
+		margin-top: 3%;
+		font-size: 30px;
+		/* margin-bottom: 5%; */
+		background-color: black;
+		border : 2px solid white;
+		border-top-left-radius: 30px;
+		border-top-right-radius: 30px;
+		border-bottom-right-radius: 30px;
+		border-bottom-left-radius: 30px;
+	 }
+	 .backHome_button[disabled],
+	 .disabled{
+		 opacity: 0.5;
+		 filter: alpha(opacity=50);
+		 cursor: not-allowed
+	 }
+
+
+
 
 /* !다음 버튼 핸들링 */
     .next_button {
-      margin-left: 28%;
-      margin-top: 2%;
-      margin-bottom: 2%;
-      background-color: red;
+		background-color: #397fb3; /* For browsers that do not support gradients */
+		background-image: url("../images/overlay.png"),
+		-webkit-linear-gradient(45deg, #e37682  15% , #397fb3 85%); /* For Safari 5.1 to 6.0 */
+		background-image: url("../images/overlay.png"),
+		-ms-linear-gradient(45deg, #e37682  15% , #397fb3 85%); /* For Opera 11.1 to 12.0 */
+		background-image: url("../images/overlay.png"),
+		-moz-linear-gradient(45deg, #e37682  15% , #397fb3 85%); /* For Firefox 3.6 to 15 */
+		background-image: url("../images/overlay.png"),
+		linear-gradient(45deg,#e37682 15% , #397fb3 85%); /* Standard syntax */
+		/* width: 250px;
+		height: 75px; */
+      margin-left: 8%;
+	  margin-top: 8%;
+	  font-size: 30px;
+      /* margin-bottom: 2%; */ 
+	  background-color: #935d8c;
+	  border : 2px solid white;
+	  border-top-left-radius: 30px;
+	  border-top-right-radius: 30px;
+	  border-bottom-right-radius: 30px;
+	  border-bottom-left-radius: 30px;
     }
 
 
@@ -3875,11 +3932,23 @@ input, select, textarea {
 /* ! 예, 아니오, 모르겠습니다 부분
    ? 버튼 조작 클래스 */
    .ans_msg {
-    width: 40%;
+	background-color: #397fb3; /* For browsers that do not support gradients */
+		background-image: url("../images/overlay.png"),-webkit-linear-gradient(45deg, #aa4b6b  25% ,#3b8d99 85%) ; /* For Safari 5.1 to 6.0 */
+		background-image: url("../images/overlay.png"),-ms-linear-gradient(45deg, #aa4b6b  25%, #3b8d99 85%); /* For Opera 11.1 to 12.0 */
+		background-image: url("../images/overlay.png"),-moz-linear-gradient(45deg, #aa4b6b  25%, #3b8d99 85%); /* For Firefox 3.6 to 15 */
+		background-image: url("../images/overlay.png"),linear-gradient(45deg, #aa4b6b 25%,#3b8d99 85%); /* Standard syntax */
+	width: 40%;
+	height: 70px;
+	font-size: 20px;
     /* margin-left: 28%; */
-    margin-top: 0.8%;
-    margin-bottom: 0.8%;
-    /* background-color: black; */
+     margin-top: 0.5%;
+     margin-bottom: 3%;
+	/* background-color: black; */
+	border : 2px solid white;
+	  border-top-left-radius: 30px;
+	  border-top-right-radius: 30px;
+	  border-bottom-right-radius: 30px;
+	  border-bottom-left-radius: 30px;
   }
 
 
@@ -3903,7 +3972,7 @@ input, select, textarea {
   /* !질문지 전체 테두리 영역 */
   .question-form{
     /* background-color: goldenrod; */
-    border : 3px solid white;
+    border : 4px solid white;
     border-top-left-radius: 10px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 50px;
@@ -3943,6 +4012,20 @@ div.radio-wrap {
 	font-size : 8em;
   }
 
+.logOut-Form{
 
+ border : 4px solid white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+ font-family: 'Nanum Pen Script', cursive;
+ margin-top: 2%;
+ margin-left: 77%;
+ margin-right: 3%;
+ font-size: 57px;
+ color : black;
+}
 
 /* !! 수요일 최종수정(겹치는 부분들 제거) ---by 성용 */

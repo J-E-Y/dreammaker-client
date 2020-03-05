@@ -284,10 +284,20 @@ class MainSurvey extends Component {
     }
   }
 
+
+
+
+
   //답변 클릭시 핸들링 대답은 선택되어지고, 버튼은 활성화 된다.
   checkAnswer = answer => {
     this.setState({ myAnswer: answer, disabled: false });
+
   };
+
+
+
+
+
 
   // 마지막 완료 버튼 핸들링   SurvayData[마지막질문] === SurvayData.length -1 이 같으면
   surveyFinish = () => {
@@ -337,6 +347,7 @@ class MainSurvey extends Component {
     }
   }
 
+
   render() {
     //! 만약 비회원PK ID를 가져온다면  this.props.nonUserId 쓰세요 이것은 App.js에서 내려옵니다.
     //! 만약 사용자이름을 가져오고싶다면  this.props.userinfo.name 쓰세요 이것은 App.js에서 내려옵니다.
@@ -370,6 +381,8 @@ class MainSurvey extends Component {
       }
     }
 
+
+
     //  !질문이 다 끝났을 경우 합산 스코어 보여준다.
     if (endPage) {
       return (
@@ -387,17 +400,19 @@ class MainSurvey extends Component {
       return (
         <div className="App">
           {/* //! 질문지 폼 */}
-          <div style={{ paddingLeft: "1600px" }}>
-            <span>{username}</span>
-            <span
-              style={{
-                margin: "15px",
-                fontSize: "15px"
-              }}
-            >
-              <Link to="/logout">로그아웃하기</Link>
-            </span>
+
+          {/* //! 여기가 로그아웃하기 */}
+          <div className="logOut-Form">
+          {/* <div style={{ paddingLeft: "1600px" }}> */}
+            {/* <span>{username}</span>
+            <span style={{margin: "15px",fontSize: "25px"}}> */}
+              <Link to="/logout">로그아웃</Link>
+            {/* </span> */}
           </div>
+
+
+
+
           <form className="question-form">
             <fieldset className="question-fieldset">
               <legend>DreamMaker가 여러분의 꿈을 응원합니다!</legend>
@@ -437,21 +452,32 @@ class MainSurvey extends Component {
 
           {/* //! 맨 첫페이지 일 경우에는 이전버튼이 아니라 홈으로 가기 버튼이 나와야 한다.  */}
 
-          <div className="choiceBTN-group">
+          {/* <form className="choiceBTN-group"> */}
+          <div className="button-wrap">
             {/* //!이전 버튼 클릭시에 이전 페이지로 넘어가기*/}
 
             {currentQuestion === 0 && (
-              // 다음 버튼
+             
 
-              <SLink to="/">
-                <button
-                  className="backHome_button"
-                  // ! 사실 원클릭은 필요없다.
-                  onClick={this.backHomeQuestionHandler}
-                >
-                  홈으로
-                </button>
-              </SLink>
+              <button
+              className="backHome_button"
+              // 버튼은 답 클릭전에는 비활성화 되어있다. 클릭시에 활성화된다.
+            
+              // 여기서 이전 질문 핸들러가 된다.
+              // onClick={this.prevQuestionHandler}
+          
+            >
+              이전 질문
+            </button>
+              // <SLink to="/">
+              //   <button
+              //     className="backHome_button"
+              //     // ! 사실 원클릭은 필요없다.
+              //     onClick={this.backHomeQuestionHandler}
+              //   >
+              //     홈으로
+              //   </button>
+              // </SLink>
             )}
 
             {currentQuestion !== 0 &&
@@ -461,7 +487,7 @@ class MainSurvey extends Component {
                 <button
                   className="prev_button"
                   // 버튼은 답 클릭전에는 비활성화 되어있다. 클릭시에 활성화된다.
-                  // disabled={this.state.disabled}
+                  disabled={this.state.disabled}
                   // 여기서 이전 질문 핸들러가 된다.
                   onClick={this.prevQuestionHandler}
                 >
@@ -485,6 +511,9 @@ class MainSurvey extends Component {
               </button>
             )}
 
+
+
+
             {/* //! 질문지의 마지막에는 finish 버튼 작동하게 한다. */}
             {/* //adding a finish button */}
             {currentQuestion === this.state.question_data.length - 1 &&
@@ -496,6 +525,7 @@ class MainSurvey extends Component {
                   제출하기
                 </button>
               )}
+          {/* </form> */}
           </div>
         </div>
       );
