@@ -135,6 +135,17 @@ class ResultPage extends Component {
 
     return (
       <div id="wrapper">
+        <div style={{ paddingLeft: "1600px" }}>
+          <span>{this.props.username}</span>
+          <span
+            style={{
+              margin: "15px",
+              fontSize: "15px"
+            }}
+          >
+            <Link to="/logout">로그아웃하기</Link>
+          </span>
+        </div>
         {/* 
     <!-- Header --> */}
         <header id="header" className="alt">
