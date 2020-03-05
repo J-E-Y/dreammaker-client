@@ -1,4 +1,4 @@
-import React from "react";
+import React , { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -15,12 +15,18 @@ import { Logout } from "./pages/Logout";
 //! npm install axios
 
 class App extends React.Component {
-  state = {
+  constructor(props){
+    super(props)
+ 
+    console.log("앱.js", props);
+    console.log("앱.js2" , this.props);
+  this.state = {
     //? isLogin 은 로그인상태를 핸들링하기위한 변수
     isLogin: false,
     googleLogin: false,
     nonUserId: null,
     googleUserName: null,
+  
     //? 로그인 버튼을 누르면 서버로부터응답받은 정보들이 담긴다.
     userinfo: {
       id: "",
@@ -33,7 +39,8 @@ class App extends React.Component {
       age: ""
     }
   };
-
+}
+  
   //? 로그인 버튼 클릭시 state 에 로그인상태를 true 로 바꾼다.
   loginStateUpdate() {
     this.setState({
@@ -87,7 +94,7 @@ class App extends React.Component {
     //? url => home은  처음화면 > 로그인 버튼 누르면 mypage 로 이동
     //? url => signup은 회원가입버튼누르면 이동 >  완료누르면 > home 다시 이동
     //? url => Nonsignup 비회원가입하면 이동 > 완료 누르면 > question 이동
-
+     console.log("this.props.max_hol_id", this.props.max_hol_id);
     //! 이동경로
     //! home(로그인) -> mypage -> question
     //! home(로그인) -> signup -> home(로그인) -> mypage -> question
@@ -127,14 +134,23 @@ class App extends React.Component {
               />
             )}
           />
+
+
           <Route
             exact
             path="/survey"
-            render={() => <Surbey nonUserId={this.state.nonUserId} />}
+            render={() => 
+            <Surbey nonUserId={this.state.nonUserId} />}
           />
 
+  
           {/* 결과 페이지로 넘어갈 수 있게 하는  Route 부분 입니다. */}
-          <Route exact path="/result" render={() => <Result />} />
+          {/* <Route 
+          exact 
+          path="/result" 
+          render={() => 
+          <Result surveyFinish={this.props.max_hol_id}/>} 
+        /> */}
 
           <Route
             exact
