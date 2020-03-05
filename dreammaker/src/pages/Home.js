@@ -33,9 +33,10 @@ class Home extends React.Component {
       console.log("Email: " + profile.getEmail());
       //YOUR CODE HERE
       if (googleUser.getAuthResponse().id_token) {
-        this.props.googleStateUpdate();
+        this.props.funGoogleLogin();
+        console.log("logIn");
       }
-      console.log("logOut");
+
       // googleUser.isSignedIn.get();
       //     fetch(
       //       "http://15.165.161.83:5000/user/signin",
@@ -123,9 +124,7 @@ class Home extends React.Component {
           }}
         >
           <center>
-            <h1 className="main-home">
-              Dreammaker
-            </h1>
+            <h1 className="main-home">Dreammaker</h1>
             <img src={log2} alt="log2" width="200" height="200" />
             <form
               style={{ marginLight: "200px" }}
@@ -185,28 +184,22 @@ class Home extends React.Component {
                 ></input>
               </div>
               <div>
-
-
                 비밀번호
-
                 <input
                   className="login-password"
                   type="password"
                   onChange={this.handleInputValue("password")}
-                >
-                </input>
+                ></input>
               </div>
               <button className="login-btn" type="submit">
                 로그인
               </button>
             </form>
-            
-            
-            
+
             <div>
               <span
                 style={{
-                  margin: "32px",
+                  margin: "32px"
                   // fontSize: "35px"
                 }}
               >
@@ -214,7 +207,7 @@ class Home extends React.Component {
               </span>
               <span
                 style={{
-                   margin: "32px",
+                  margin: "32px"
                   // fontSize: "35px"
                 }}
               >

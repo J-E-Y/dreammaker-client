@@ -17,6 +17,7 @@ class Signup extends React.Component {
       showStore2: false,
       idMessage: "",
       showStore: false,
+      color: "blue",
       arr: [],
       id: "",
       password1: "",
@@ -90,11 +91,14 @@ class Signup extends React.Component {
       this.state.name !== "" &&
       this.state.moblie !== "" &&
       this.state.email !== "" &&
-      // gender: "",
-      this.state.age !== ""
+      this.state.gender !== "" &&
+      this.state.age !== "" &&
+      this.state.idMessage === "사용가능한 아이디입니다."
     ) {
       alert("회원가입이 완료되었습니다. ");
       this.setState({ isPassword: true });
+    } else {
+      alert("회원정보가 올바르지 않습니다.");
     }
   }
   passwordCheck() {
@@ -110,15 +114,17 @@ class Signup extends React.Component {
       )
       .then(res => {
         if (res.data === "사용가능한 아이디입니다.") {
-          this.setState({ showStore2: true });
+          this.setState({ showStore2: this.state.showStore2 });
         } else {
-          this.setState({ showStore2: false });
+          this.setState({ showStore2: this.state.showStore2 });
         }
       });
   }
 
- 
   render() {
+    console.log("this.state.showStore: ", this.state.showStore);
+
+    console.log("this.state.showStore2:", this.state.showStore2);
     console.log("this.state: ", this.state);
     if (this.state.isSignUp && this.state.isPassword) {
       return (
@@ -222,7 +228,7 @@ class Signup extends React.Component {
                   className="checkPassword"
                   style={{
                     fontSize: "20px",
-                    color: "red",
+                    color: "blue",
                     display: this.state.showStore2 ? "block" : "none"
                   }}
                 >
@@ -292,7 +298,6 @@ class Signup extends React.Component {
               ></input>
             </div>
 
-
             <div className="radio-wrap">
               <div onChange={this.setGender.bind(this)}>
                 성별 :
@@ -313,18 +318,10 @@ class Signup extends React.Component {
             </div>
 
             <div>
-              <Link to="/login">이미 계정이 있나요?</Link>
+              <Link to="/login">홈으로 가기</Link>
             </div>
 
-            <button
-              style={{
-                // fontSize: "35px",
-                // height: "100px",
-                // width: "100px"
-              }}
-              className="signup-btn"
-              type="submit"
-            >
+            <button className="signup-btn" type="submit">
               회원가입하기
             </button>
           </form>

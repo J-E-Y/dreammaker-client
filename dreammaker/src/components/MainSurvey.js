@@ -24,6 +24,7 @@ class MainSurvey extends Component {
       question_data: null, //filer를 거친 내용만 뿌려질 데이터
       answer_table: null, //뿌리지않은 질문데이터 객체타입
       user_answer_reord: [] // 유저가 답변한 기록
+      // userLoginfromHome: this.props.userinfo.name
     };
   }
 
@@ -270,9 +271,12 @@ class MainSurvey extends Component {
   };
 
   render() {
-    console.log(">>>>>>>>nonUserId:>>>>>>>>>>>>>>>:", this.props.nonUserId);
-    console.log(this.state);
-
+    //! 만약 비회원PK ID를 가져온다면  this.props.nonUserId 쓰세요 이것은 App.js에서 내려옵니다.
+    //! 만약 사용자이름을 가져오고싶다면  this.props.userinfo.name 쓰세요 이것은 App.js에서 내려옵니다.
+    //  isLogin={this.state.isLogin}
+    // funGoogleLogOut={this.funGoogleLogOut.bind(this)}
+    // console.log("isLoginprops=>>>: ", this.props.googleLogin);
+    console.log("비회원아이디 서베이 페이지 :", this.props.nonUserName);
     const {
       answer_options,
       myAnswer,
@@ -321,11 +325,23 @@ class MainSurvey extends Component {
       );
 
       // 마지막 질문이 끝나지 않을 경우의 화면 렌더
+      //!===========================================================================
     } else if (question_data) {
       return (
         <div className="App">
           {/* //! 질문지 폼 */}
-
+          <div style={{ paddingLeft: "1600px" }}>
+            {/* <span>{this.props.userinfo.name}</span>
+            <span>{this.props.nonUserName}</span> */}
+            <span
+              style={{
+                margin: "15px",
+                fontSize: "15px"
+              }}
+            >
+              <Link to="/logout">로그아웃하기</Link>
+            </span>
+          </div>
           <form className="question-form">
             <fieldset className="question-fieldset">
               <legend>DreamMaker가 여러분의 꿈을 응원합니다!</legend>
