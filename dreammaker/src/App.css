@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .login-id {
@@ -16,9 +17,10 @@
   border-radius: 5px;
 }
 
+/* ! 먹힌다. */
 .login-btn {
   width: 207px;
-  height: 63px;
+  /* height: 63px; */
   margin: 5px;
   border-radius: 5px;
   font-size: 20px;

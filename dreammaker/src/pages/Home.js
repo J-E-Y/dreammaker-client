@@ -123,15 +123,7 @@ class Home extends React.Component {
           }}
         >
           <center>
-            <h1
-              className="main-home"
-              style={{
-                marginTop: "70px",
-
-                fontSize: "5em",
-                color: "white"
-              }}
-            >
+            <h1 className="main-home">
               Dreammaker
             </h1>
             <img src={log2} alt="log2" width="200" height="200" />
@@ -201,25 +193,29 @@ class Home extends React.Component {
                   className="login-password"
                   type="password"
                   onChange={this.handleInputValue("password")}
-                ></input>
+                >
+                </input>
               </div>
               <button className="login-btn" type="submit">
                 로그인
               </button>
             </form>
+            
+            
+            
             <div>
               <span
                 style={{
                   margin: "32px",
-                  fontSize: "35px"
+                  // fontSize: "35px"
                 }}
               >
                 <Link to="/signup">회원가입</Link>
               </span>
               <span
                 style={{
-                  margin: "32px",
-                  fontSize: "35px"
+                   margin: "32px",
+                  // fontSize: "35px"
                 }}
               >
                 <Link to="/nonuser/signup">비회원가입</Link>
