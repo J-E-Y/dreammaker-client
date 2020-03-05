@@ -75,11 +75,23 @@ class Nonsignup extends React.Component {
                   { withCredentials: true }
                 )
                 .then(res => {
-                  console.log("res:", res);
+                  // console.log("res:", res);
                   if (res.data.non_user_id) {
                     console.log("res.data.non_user_id:", res.data.non_user_id);
                     this.props.NonSignupUserId(res.data.non_user_id);
                     this.setState({ isNonSignUp: true });
+                    axios
+                      .post(
+                        "http://15.165.161.83:5000/nonuser/info",
+                        {
+                          non_user_id: res.data.non_user_id
+                        },
+                        { withCredentials: true }
+                      )
+                      .then(res => {
+                        console.log("비회원 아이디: ", res.data.name);
+                        this.props.getChanged(res.data.name);
+                      });
                   }
                 });
             }}
@@ -110,7 +122,7 @@ class Nonsignup extends React.Component {
               ></input>
             </div>
             <div>
-              <Link to="/login">이미 계정이 있나요?</Link>
+              <Link to="/login">홈으로 가기</Link>
             </div>
             <button
               style={

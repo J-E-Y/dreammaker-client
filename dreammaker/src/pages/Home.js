@@ -34,9 +34,10 @@ class Home extends React.Component {
       console.log("Email: " + profile.getEmail());
       //YOUR CODE HERE
       if (googleUser.getAuthResponse().id_token) {
-        this.props.googleStateUpdate();
+        this.props.funGoogleLogin();
+        console.log("logIn");
       }
-      console.log("logOut");
+
       // googleUser.isSignedIn.get();
       //     fetch(
       //       "http://15.165.161.83:5000/user/signin",
