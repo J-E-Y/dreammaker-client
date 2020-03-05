@@ -18,16 +18,10 @@ class App extends React.Component {
   state = {
     //? isLogin 은 로그인상태를 핸들링하기위한 변수
     isLogin: false,
-    //? 회원가입시 작성되는 info
-    // userinfo: {
-    //   id: "",
-    //   password1: "",
-    //   password2: "",
-    //   name: "",
-    //   mobile: "",
-    //   email: "",
-    //   gender: "",
-    //   age: ""
+    googleLogin: false,
+    nonUserId: null,
+    googleUserName: null,
+    //? 로그인 버튼을 누르면 서버로부터응답받은 정보들이 담긴다.
     userinfo: {
       id: "",
       password1: "",
@@ -46,6 +40,12 @@ class App extends React.Component {
       isLogin: true
     });
   }
+  googleStateUpdate() {
+    this.setState({
+      googleLogin: true
+    });
+  }
+
   //? Logout.js 함수에서 사용하기위한 메소드
   //? 로그아웃버튼을 누르면 로그인상태에서 로그아웃상태로 바꾼다.
   //? 만약 로그인상태라면
@@ -76,12 +76,12 @@ class App extends React.Component {
       }
     });
   }
-  //? 비회원 가입시 사용될 함수
-  NonisLoginStateUpdate() {
+  NonSignupUserId(e) {
     this.setState({
-      NonisLogin: true
+      nonUserId: e
     });
   }
+  //? 비회원 가입시 사용될 함수
 
   render() {
     //? url => home은  처음화면 > 로그인 버튼 누르면 mypage 로 이동
@@ -91,7 +91,9 @@ class App extends React.Component {
     //! 이동경로
     //! home(로그인) -> mypage -> question
     //! home(로그인) -> signup -> home(로그인) -> mypage -> question
-
+    // console.log("nonUserId: ", this.state.nonUserId);
+    // console.log("nonLogin:", this.state.isLogin);
+    // nonUserId: null,
     return (
       <div>
        
@@ -103,6 +105,8 @@ class App extends React.Component {
                 isLogin={this.state.isLogin}
                 loginStateUpdate={this.loginStateUpdate.bind(this)}
                 userInfoUpdate={this.userInfoUpdate.bind(this)}
+                googleLogin={this.state.googleLogin}
+                googleStateUpdate={this.googleStateUpdate.bind(this)}
               />
             )}
           />
@@ -113,17 +117,21 @@ class App extends React.Component {
             render={() => <Signup isLogin={this.state.isLogin} />}
           />
 
-          <Route exact path="/nonuser/signup" render={() => <Nonsignup />} />
-
-          {/* 
           <Route
             exact
-            path="/subApp"
-            render={() => <Sub isLogin={this.state.isLogin} />}
-          /> */}
-
-          {/* 설문 페이지로 넘어갈 수 있게 하는 Route 부분 입니다. */}
-          <Route exact path="/survey" render={() => <Surbey />} />
+            path="/nonuser/signup"
+            render={() => (
+              <Nonsignup
+                nonUserId={this.state.nonUserId}
+                NonSignupUserId={this.NonSignupUserId.bind(this)}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/survey"
+            render={() => <Surbey nonUserId={this.state.nonUserId} />}
+          />
 
           {/* 결과 페이지로 넘어갈 수 있게 하는  Route 부분 입니다. */}
           <Route exact path="/result" render={() => <Result />} />
@@ -135,6 +143,7 @@ class App extends React.Component {
               <Mypage
                 isLogin={this.state.isLogin}
                 userinfo={this.state.userinfo}
+                googleLogin={this.state.googleLogin}
               />
             )}
           />

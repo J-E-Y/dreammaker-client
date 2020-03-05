@@ -24,7 +24,7 @@ class Signup extends React.Component {
       name: "",
       moblie: "",
       email: "",
-      // gender: "",
+      gender: "",
       age: ""
     };
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -79,13 +79,14 @@ class Signup extends React.Component {
     for (let key in this.state) {
       if (this.state[key] === "") {
         alert(key + "가 입력되지 않았습니다.");
+        return;
       }
     }
     if (
       this.state.id !== "" &&
       this.state.password1 !== "" &&
       this.state.confirmPassword !== "" &&
-      // this.state.gender !== "" &&
+      this.state.gender !== "" &&
       this.state.name !== "" &&
       this.state.moblie !== "" &&
       this.state.email !== "" &&
@@ -293,18 +294,14 @@ class Signup extends React.Component {
 
 
             <div className="radio-wrap">
-            <div onChange={this.setGender.bind(this)}>
-              성별 :
-              
-              <input id="gender1" type="radio" value="남" name="gender"/> 
-              <label htmlFor="gender1">남</label>
-           
-      
-              <input id="gender2" type="radio" value="여" name="gender"/> 
-              <label htmlFor="gender2">여</label>
+              <div onChange={this.setGender.bind(this)}>
+                성별 :
+                <input id="gender1" type="radio" value="남" name="gender" />
+                <label htmlFor="gender1">남</label>
+                <input id="gender2" type="radio" value="여" name="gender" />
+                <label htmlFor="gender2">여</label>
               </div>
-              </div>
-
+            </div>
 
             <div>
               나이

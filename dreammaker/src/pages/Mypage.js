@@ -15,6 +15,7 @@ export function Mypage(props) {
       </center>
     );
   }
+
   // const logo = require("./usericon.png");
   //? 사용자가 로그인 정보를 적고 로그인 버튼을 누르고 정보가 맞다면
   //? Home.js 에서는 2가지 함수를 실행시킨다 .
@@ -33,7 +34,7 @@ export function Mypage(props) {
   //? name ,age, gender, moblie 값들이 채워진다.
   //?! 근데 mobile 값만 안들어온다 왜그럴까?
   if (props.userinfo.name) {
-    console.log("(props.isLogin: ", props.isLogin);
+    console.log("Mypage-props.isLogin: ", props.isLogin);
     return (
       <div>
         <center>
@@ -67,11 +68,13 @@ export function Mypage(props) {
           >
             <Link to="/logout">로그아웃하기</Link>
           </span>
-          <span></span>
         </center>
       </div>
     );
   }
+  // if (props.googleLogin) {
+  //   return <div>good!</div>;
+  // }
 
   return <div>Loading.....</div>;
 }
