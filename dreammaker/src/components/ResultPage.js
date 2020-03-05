@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Youtuber from '../images/youtuber.jpg';
-import { Redirect, Link, withRouter, Route } from "react-router-dom";
+import {Link, Route, withRouter, Switch, NavLink} from "react-router-dom";
 import styled from "styled-components";
 import "../css/Result.css";
 import "../css/noscript.css";
 import Logo from '../images/logo.svg';
 import axios from 'axios';
+
 
 // !  결과페이지 입니다.
 // !  템플릿을 가져왔기 때문에 수정해야할 부분들이 많습니다.
@@ -21,15 +21,18 @@ class ResultPage extends Component {
         // surveyFinish: 1~6
       this.state = {
         HollandData: null,
+        currentResult: 0, // 배열 인덱스 초기 번호 [0]
         hol_id: this.props.surveyFinish,
-        job_options : [],  
+        job_options : [],     // 직업 묶은 초기 값 []
+       
       };
+     
     }
 
  
 
     HollandHandler = () => {
-    console.log("홀란드데이터", this.state.HollandData);
+    console.log("홀란드데이터 ", this.state.HollandData);
     console.log(this.state.hol_id, 'hol_id값?');
     let hol_title = this.state.HollandData[0].hol_name; // 홀란드 유형
      console.log("홀란드유형은?:" , hol_title);
@@ -43,21 +46,37 @@ class ResultPage extends Component {
     let hol_jobs = this.state.HollandData[0].jobs;  // 유형별 직업들 
     console.log("유형별 직업들" ,hol_jobs);
 
-    let hol_jobs_name = this.state.HollandData[0].jobs[0].job_name; // 세부 직업이름
-    console.log('직업이름' , hol_jobs_name);
+    let hol_jobs_name1 = this.state.HollandData[0].jobs[0].job_name; // 세부 직업이름
+    console.log('직업이름1' , hol_jobs_name1);
 
-    let hol_jobs_detail = this.state.HollandData[0].jobs[0].job_detail;
-    console.log('직업설명' , hol_jobs_detail);
+    let hol_jobs_detail1 = this.state.HollandData[0].jobs[0].job_detail;
+    console.log('직업설명1' , hol_jobs_detail1);
     
-    let hol_jobs_image = this.state.HollandData[0].jobs[0].job_image;
-    console.log('직업이미지' , hol_jobs_image);
+    let hol_jobs_image1 = this.state.HollandData[0].jobs[0].job_image;
+    console.log('직업이미지1' , hol_jobs_image1);
+
+
+    let hol_jobs_name2 = this.state.HollandData[0].jobs[1].job_name; // 세부 직업이름
+    console.log('직업이름2' , hol_jobs_name2);
+
+    let hol_jobs_detail2 = this.state.HollandData[0].jobs[1].job_detail;
+    console.log('직업설명2' , hol_jobs_detail2);
     
+    let hol_jobs_image2 = this.state.HollandData[0].jobs[1].job_image;
+    console.log('직업이미지2' , hol_jobs_image2);
+
+    let hol_jobs_name3 = this.state.HollandData[0].jobs[2].job_name; // 세부 직업이름
+    console.log('직업이름3' , hol_jobs_name3);
+
+    let hol_jobs_detail3 = this.state.HollandData[0].jobs[2].job_detail;
+    console.log('직업설명3' , hol_jobs_detail3);
+    
+    let hol_jobs_image3 = this.state.HollandData[0].jobs[2].job_image;
+    console.log('직업이미지3' , hol_jobs_image3);
     console.log(this.state.hol_id, 'hol_id값?');
 
     let result_id = this.state.hol_id;
     console.log('리절트 아이디 값: ', result_id);
-
-
 
 
     this.setState(() => {
@@ -67,17 +86,41 @@ class ResultPage extends Component {
             hol_title:  hol_title,
             hol_message: hol_message,
             hol_image : hol_image,
-            hol_jobs_name: hol_jobs_name,
-            hol_jobs_detail: hol_jobs_detail,
-            hol_jobs_image : hol_jobs_image,
+            hol_jobs_name1: hol_jobs_name1,
+            hol_jobs_detail1: hol_jobs_detail1,
+            hol_jobs_image1 : hol_jobs_image1,
+
+            hol_jobs_name2: hol_jobs_name2,
+            hol_jobs_detail2: hol_jobs_detail2,
+            hol_jobs_image2 : hol_jobs_image2,
+
+            hol_jobs_name3: hol_jobs_name3,
+            hol_jobs_detail3: hol_jobs_detail3,
+            hol_jobs_image3 : hol_jobs_image3,
+
             answer_options: hol_jobs,
-            hol_id : result_id
+            hol_id : result_id,
+            
         };
       });
-
-
-
 }
+
+
+
+go = () => {
+    this.props.history.go();
+}
+
+goBack = () => {
+    this.props.history.push('/survey');
+}
+
+
+
+
+
+
+
 
 
       componentDidMount(){
@@ -106,10 +149,10 @@ class ResultPage extends Component {
   const {answer_options,
     hol_title,
     hol_message,
-    hol_image,
-    hol_jobs_name,
-    hol_jobs_detail,
-    hol_jobs_image} = this.state;
+    hol_image} = this.state;
+
+
+   console.log(this.state, "디스스테이트")
 
 
     const SLink = styled(Link)
@@ -126,15 +169,16 @@ class ResultPage extends Component {
             <span className="logo"><img src={Logo} alt="" /></span>
               <h1>____님의 검사 결과는 {hol_title}입니다.</h1>
             <p>DreamMaker와 여러분의 꿈을 찾아보아요</p>
+           
+           
         </header>
 
     {/* <!-- Nav --> */}
         <nav id="nav">
             <ul>
-                <li><a href="#intro" className="active">반응형 클릭버튼 1</a></li>
-                <li><a href="#first">반응형 클릭버튼 2</a></li>
-                <li><a href="#second">반응형 클릭버튼 3</a></li>
-                <li><a href="#cta">반응형 클릭버튼 4</a></li>
+                <li><a href="#intro" className="active">타입</a></li>
+                <li><a href="#first">직업</a></li>
+                <li><a href="#cta">그 밖에</a></li>
             </ul>
         </nav>
 
@@ -150,7 +194,7 @@ class ResultPage extends Component {
                             </header>
                             <p>{hol_message}</p>
                             <ul className="actions">
-                                <li><a href="generic.html" className="button">유형타입 보러가기 링크</a></li>
+                                {/* <li><a href="generic.html" className="button">유형타입 보러가기 링크</a></li> */}
                             </ul>
                         </div>
                         <span className="image"><img src={hol_image} alt="타입이미지" /></span>
@@ -166,142 +210,67 @@ class ResultPage extends Component {
                     <ul className="features">
                         <li>
               <span className="icon solid major style1 fa-code">
-                  <img src={hol_jobs_image} alt={hol_jobs_name} width='100%' height='100%' 
+                  <img src={this.state.hol_jobs_image1} alt={this.state.hol_jobs_name1} width='100%' height='100%' 
                   style={{objectFit:'fill',borderRadius:'50%'}}/>
                      
                      
                      {/* // Todo 배열로 된 직업 내용들을 풀어야 한다.  */}
                       </span>
-                            <h3>{hol_jobs_name}</h3>
-                            <p>{hol_jobs_detail}</p>
+                            <h3>{this.state.hol_jobs_name1}</h3>
+                            <p>{this.state.hol_jobs_detail1}</p>
                         </li>
 
 
                         <li>
                             <span className="icon major style3 fa-copy">
-                        <img src={hol_jobs_image} alt={hol_jobs_name} width='100%' height='100%' 
+                        <img src={this.state.hol_jobs_image2} alt={this.state.hol_jobs_name2} width='100%' height='100%' 
                             style={{objectFit:'fill',borderRadius:'50%'}}/>
    
                             </span>
-                            <h3>{hol_jobs_name}</h3>
-                            <p>{hol_jobs_detail}</p>
+                            <h3>{this.state.hol_jobs_name2}</h3>
+                            <p>{this.state.hol_jobs_detail2}</p>
                         </li>
                         <li>
                             <span className="icon major style5 fa-gem">
-                            <img src={hol_jobs_image} alt={hol_jobs_name} width='100%' height='100%' 
+                            <img src={this.state.hol_jobs_image3} alt={this.state.hol_jobs_name3} width='100%' height='100%' 
                             style={{objectFit:'fill',borderRadius:'50%'}}/>
                             </span>
-                            <h3>{hol_jobs_name}</h3>
-                            <p>{hol_jobs_detail}</p>
+                            <h3>{this.state.hol_jobs_name3}</h3>
+                            <p>{this.state.hol_jobs_detail3}</p>
                         </li>
                     </ul>
-                    <footer className="major">
-                        <ul className="actions special">
-                            <li><a href="generic.html" className="button">Learn More- 더보기란 없앨예정</a></li>
-                        </ul>
-                    </footer>
                 </section>
 
             {/* <!-- Second Section --> */}
-                <section id="second" className="main special">
-                    <header className="major">
-                        <h2>여기는 뭘로 해야하나?? 유형 점수별 분포??</h2>
-                        <h2>아니면 여기다가 추천 취미??</h2>
-                        <p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-                        posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
-                    </header>
-                    <ul className="statistics">
-                        <li className="style1">
-                            <span className="icon solid fa-code-branch"></span>
-                            <strong>5,120</strong> Etiam
-                        </li>
-                        <li className="style2">
-                            <span className="icon fa-folder-open"></span>
-                            <strong>8,192</strong> Magna
-                        </li>
-                        <li className="style3">
-                            <span className="icon solid fa-signal"></span>
-                            <strong>2,048</strong> Tempus
-                        </li>
-                        <li className="style4">
-                            <span className="icon solid fa-laptop"></span>
-                            <strong>4,096</strong> Aliquam
-                        </li>
-                        <li className="style5">
-                            <span className="icon fa-gem"></span>
-                            <strong>1,024</strong> Nullam
-                        </li>
-                    </ul>
-                    <p className="content">Nam elementum nisl et mi a commodo porttitor. Morbi sit amet nisl eu arcu faucibus hendrerit vel a risus. Nam a orci mi, elementum ac arcu sit amet, fermentum pellentesque et purus. Integer maximus varius lorem, sed convallis diam accumsan sed. Etiam porttitor placerat sapien, sed eleifend a enim pulvinar faucibus semper quis ut arcu. Ut non nisl a mollis est efficitur vestibulum. Integer eget purus nec nulla mattis et accumsan ut magna libero. Morbi auctor iaculis porttitor. Sed ut magna ac risus et hendrerit scelerisque. Praesent eleifend lacus in lectus aliquam porta. Cras eu ornare dui curabitur lacinia.</p>
-                    <footer className="major">
-                        <ul className="actions special">
-                            <li><a href="generic.html" className="button">Learn More</a></li>
-                        </ul>
-                    </footer>
-                </section>
+        
 
             {/* <!-- Get Started --> */}
                 <section id="cta" className="main special">
                     <header className="major">
                         <h2>도움이 필요한가요??</h2>
-                        <p>검사를 해도 어려운 당신! 전문가에게 질문을 해보세요!<br />
-                        posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
+                        <p>검사를 해도 어려운 당신! 전문가에게 질문을 해보세요!<br/></p>
                     </header>
                     <footer className="major">
-                        <ul className="actions special">
-                            <li>
-                 
-                 <a href="generic.html" className="button primary">메시지 보내기</a>
-                
+                        <ul className="actions special">             
+                 <li>
+                 <button className="send_m">메시지 보내기</button>
+                 {/* <a href="generic.html" className="button primary">메시지 보내기</a> */}
                  </li>
-                            <li>
-                 <SLink to="/survey">           
-                 <a href="generic.html" className="button">다시 설문하기</a>
-                 </SLink>
-                            </li>
+                           
                         </ul>
                     </footer>
                 </section>
 
         </div>
+            <h1 className="last-name"> Made by Dreammaker</h1>
+    </div>
 
-    {/* <!-- Footer --> */}
-        <footer id="footer">
-            <section>
-                <h2>아 오늘 한게 없다 </h2>
-                <p>Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae tincidunt odio.</p>
-                <ul className="actions">
-                    <li><a href="generic.html" className="button">Learn More</a></li>
-                </ul>
-            </section>
-            <section>
-                <h2>박성용</h2>
-                <dl className="alt">
-                    <dt>Address</dt>
-                    <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-                    <dt>Phone</dt>
-                    <dd>(000) 000-0000 x 0000</dd>
-                    <dt>Email</dt>
-                    {/* <dd><a href="#">information@untitled.tld</a></dd> */}
-                </dl>
-                {/* <ul class="icons">
-                    <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-                    <li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li> */}
-                {/* </ul> */}
-            </section>
-            <p className="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-        </footer>
-
-</div>
         )
 
         }
 }
 
-export default ResultPage;
+export default withRouter(ResultPage);
 
 
 
