@@ -214,7 +214,26 @@ body.is-preload *:after {
   transition: none !important;
 }
 
+
+
+	
+	/* !배경 그라데이션 부분 담당 */
+	body {
+		/* background-color: #935d8c;
+		background-image: url("../images/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("../images/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("../images/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("../images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%); */
+	
+		background-color: #397fb3; /* For browsers that do not support gradients */
+		background-image: url("../images/overlay.png"),-webkit-linear-gradient(45deg, #e37682  15% , #397fb3 85%) ; /* For Safari 5.1 to 6.0 */
+		background-image: url("../images/overlay.png"),-ms-linear-gradient(45deg, #e37682   15%, #397fb3 85%); /* For Opera 11.1 to 12.0 */
+		background-image: url("../images/overlay.png"),-moz-linear-gradient(45deg, #e37682  15%, #397fb3 85%); /* For Firefox 3.6 to 15 */
+		background-image: url("../images/overlay.png"),linear-gradient(45deg, #e37682 15%, #397fb3 85%); /* Standard syntax */
+	}
+
 /* Type */
+
 
 body {
   background-color: #935d8c;
@@ -240,6 +259,206 @@ textarea {
   }
 }
 
+
+/* Type */
+ /* !! 배경 전체의 색 담당. 여기 배경 설정하고 106번 줄 지우면 색상이 변한다. */
+	body {
+		/* !그라데이션 배경과 색을 맞춰줘야한다. */
+		background-color: #397fb3;
+		
+		/* ? 일반적 텍스트 색이 변한다. */
+		color: rgba(255, 255, 255, 0.65);
+	}
+	
+ /* !! 폰트 담당 */
+	body, input, select, textarea {
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: 17pt;
+		font-weight: 300;
+		line-height: 1.65;
+	}
+
+		@media screen and (max-width: 1680px) {
+
+			body, input, select, textarea {
+				font-size: 14pt;
+			}
+
+		}
+
+		@media screen and (max-width: 1280px) {
+
+			body, input, select, textarea {
+				font-size: 12pt;
+			}
+
+		}
+
+		@media screen and (max-width: 360px) {
+
+			body, input, select, textarea {
+				font-size: 11pt;
+			}
+
+		}
+
+	a {
+		-moz-transition: color 0.2s ease, border-bottom 0.2s ease;
+		-webkit-transition: color 0.2s ease, border-bottom 0.2s ease;
+		-ms-transition: color 0.2s ease, border-bottom 0.2s ease;
+		transition: color 0.2s ease, border-bottom 0.2s ease;
+		text-decoration: none;
+		
+		/*//!링크의 밑줄 제거 
+	    border-bottom: dotted 1px; */
+		color: inherit;
+	}
+
+		a:hover {
+			border-bottom-color: transparent;
+		}
+
+	strong, b {
+		font-weight: 400;
+	}
+
+	em, i {
+		font-style: italic;
+	}
+
+	p {
+		margin: 0 0 2em 0;
+	}
+
+		p.content {
+			-moz-columns: 20em 2;
+			-webkit-columns: 20em 2;
+			-ms-columns: 20em 2;
+			columns: 20em 2;
+			-moz-column-gap: 2em;
+			-webkit-column-gap: 2em;
+			-ms-column-gap: 2em;
+			column-gap: 2em;
+			text-align: justify;
+		}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 300;
+		line-height: 1.5;
+		margin: 0 0 0.7em 0;
+		letter-spacing: -0.025em;
+	}
+
+		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+	h1 {
+		font-size: 2.5em;
+		line-height: 1.2;
+	}
+
+	h2 {
+		font-size: 1.5em;
+	}
+
+	h3 {
+		font-size: 1.25em;
+	}
+
+	h4 {
+		font-size: 1.1em;
+	}
+
+	h5 {
+		font-size: 0.9em;
+	}
+
+	h6 {
+		font-size: 0.7em;
+	}
+
+	@media screen and (max-width: 736px) {
+
+		h1 {
+			font-size: 2em;
+		}
+
+	}
+
+	sub {
+		font-size: 0.8em;
+		position: relative;
+		top: 0.5em;
+	}
+
+	sup {
+		font-size: 0.8em;
+		position: relative;
+		top: -0.5em;
+	}
+
+	blockquote {
+		border-left: solid 4px;
+		font-style: italic;
+		margin: 0 0 2em 0;
+		padding: 0.5em 0 0.5em 2em;
+	}
+
+	code {
+		border-radius: 8px;
+		border: solid 1px;
+		font-family: "Courier New", monospace;
+		font-size: 0.9em;
+		margin: 0 0.25em;
+		padding: 0.25em 0.65em;
+	}
+
+	pre {
+		-webkit-overflow-scrolling: touch;
+		font-family: "Courier New", monospace;
+		font-size: 0.9em;
+		margin: 0 0 2em 0;
+	}
+
+		pre code {
+			display: block;
+			line-height: 1.75;
+			padding: 1em 1.5em;
+			overflow-x: auto;
+		}
+
+	hr {
+		border: 0;
+		border-bottom: solid 1px;
+		margin: 2em 0;
+	}
+
+		hr.major {
+			margin: 3em 0;
+		}
+
+	.align-left {
+		text-align: left;
+	}
+
+	.align-center {
+		text-align: center;
+	}
+
+	.align-right {
+		text-align: right;
+	}
+
+	input, select, textarea {
+		color: #ffffff;
+	}
+
+	a:hover {
+		color: #ffffff;
+	}
+=======
 @media screen and (max-width: 1280px) {
   body,
   input,
@@ -257,6 +476,7 @@ textarea {
     font-size: 11pt;
   }
 }
+
 
 a {
   -moz-transition: color 0.2s ease, border-bottom 0.2s ease;
@@ -1091,6 +1311,382 @@ hr {
     margin-top: 0em;
   }
 
+
+	#nav {
+		-moz-transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
+		-webkit-transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
+		-ms-transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
+		transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
+		background-color: #ffffff;
+		color: #636363;
+		position: absolute;
+		width: 64em;
+		max-width: calc(100% - 4em);
+		padding: 1em;
+		background-color: #f7f7f7;
+		border-top-left-radius: 0.25em;
+		border-top-right-radius: 0.25em;
+		cursor: default;
+		text-align: center;
+	}
+
+		#nav input, #nav select, #nav textarea {
+			color: #636363;
+		}
+
+		#nav a:hover {
+			color: #636363;
+		}
+
+		#nav strong, #nav b {
+			color: #636363;
+		}
+
+		#nav h1, #nav h2, #nav h3, #nav h4, #nav h5, #nav h6 {
+			color: #636363;
+		}
+
+		#nav blockquote {
+			border-left-color: #dddddd;
+		}
+
+		#nav code {
+			background: rgba(222, 222, 222, 0.25);
+			border-color: #dddddd;
+		}
+
+		#nav hr {
+			border-bottom-color: #dddddd;
+		}
+
+		#nav + #main {
+			padding-top: 4.25em;
+		}
+
+		#nav ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+			#nav ul li {
+				-moz-transition: margin 0.2s ease;
+				-webkit-transition: margin 0.2s ease;
+				-ms-transition: margin 0.2s ease;
+				transition: margin 0.2s ease;
+				display: inline-block;
+				margin: 0 0.35em;
+				padding: 0;
+				vertical-align: middle;
+			}
+
+				#nav ul li a {
+					-moz-transition: font-size 0.2s ease;
+					-webkit-transition: font-size 0.2s ease;
+					-ms-transition: font-size 0.2s ease;
+					transition: font-size 0.2s ease;
+					display: inline-block;
+					height: 2.25em;
+					line-height: 2.25em;
+					padding: 0 1.25em;
+					border: 0;
+					border-radius: 8px;
+					box-shadow: inset 0 0 0 1px transparent;
+				}
+
+					#nav ul li a:hover {
+						background-color: rgba(222, 222, 222, 0.25);
+					}
+
+					#nav ul li a.active {
+						background-color: #ffffff;
+						box-shadow: none;
+					}
+
+		#nav.alt {
+			position: fixed;
+			top: 0;
+			padding: 0.5em 1em;
+			background-color: rgba(247, 247, 247, 0.95);
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			z-index: 10000;
+		}
+
+			#nav.alt ul li {
+				margin: 0 0.175em;
+			}
+
+				#nav.alt ul li a {
+					font-size: 0.9em;
+				}
+
+		@media screen and (max-width: 736px) {
+
+			#nav {
+				display: none;
+			}
+
+				#nav + #main {
+					padding-top: 0;
+				}
+
+		}
+/* 
+/* !Main */
+
+	#main {
+		background-color: #ffffff;
+		color: #636363;
+		border-radius: 0.25em;
+	}
+
+		#main input, #main select, #main textarea {
+			color: #636363;
+		}
+
+		#main a:hover {
+			color: #636363;
+		}
+
+		#main strong, #main b {
+			color: #636363;
+		}
+
+		#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
+			color: #636363;
+		}
+
+		#main blockquote {
+			border-left-color: #dddddd;
+		}
+
+		#main code {
+			background: rgba(222, 222, 222, 0.25);
+			border-color: #dddddd;
+		}
+
+		#main hr {
+			border-bottom-color: #dddddd;
+		}
+
+		#main .box {
+			border-color: #dddddd;
+		}
+
+		#main input[type="submit"],
+		#main input[type="reset"],
+		#main input[type="button"],
+		#main button,
+		#main .button {
+			background-color: transparent;
+			box-shadow: inset 0 0 0 1px #dddddd;
+			color: #636363 !important;
+		}
+
+			#main input[type="submit"]:hover,
+			#main input[type="reset"]:hover,
+			#main input[type="button"]:hover,
+			#main button:hover,
+			#main .button:hover {
+				background-color: rgba(222, 222, 222, 0.25);
+			}
+
+			#main input[type="submit"]:active,
+			#main input[type="reset"]:active,
+			#main input[type="button"]:active,
+			#main button:active,
+			#main .button:active {
+				background-color: rgba(222, 222, 222, 0.5);
+			}
+
+			#main input[type="submit"].icon:before,
+			#main input[type="reset"].icon:before,
+			#main input[type="button"].icon:before,
+			#main button.icon:before,
+			#main .button.icon:before {
+				color: rgba(99, 99, 99, 0.25);
+			}
+
+			#main input[type="submit"].primary,
+			#main input[type="reset"].primary,
+			#main input[type="button"].primary,
+			#main button.primary,
+			#main .button.primary {
+				background-color: #8cc9f0;
+				color: #ffffff !important;
+				box-shadow: none;
+			}
+
+				#main input[type="submit"].primary:hover,
+				#main input[type="reset"].primary:hover,
+				#main input[type="button"].primary:hover,
+				#main button.primary:hover,
+				#main .button.primary:hover {
+					background-color: #9acff2;
+				}
+
+				#main input[type="submit"].primary:active,
+				#main input[type="reset"].primary:active,
+				#main input[type="button"].primary:active,
+				#main button.primary:active,
+				#main .button.primary:active {
+					background-color: #7ec3ee;
+				}
+
+				#main input[type="submit"].primary.icon:before,
+				#main input[type="reset"].primary.icon:before,
+				#main input[type="button"].primary.icon:before,
+				#main button.primary.icon:before,
+				#main .button.primary.icon:before {
+					color: #ffffff !important;
+				}
+
+		#main label {
+			color: #636363;
+		}
+
+		#main input[type="text"],
+		#main input[type="password"],
+		#main input[type="email"],
+		#main select,
+		#main textarea {
+			background-color: rgba(222, 222, 222, 0.25);
+			border-color: #dddddd;
+		}
+
+			#main input[type="text"]:focus,
+			#main input[type="password"]:focus,
+			#main input[type="email"]:focus,
+			#main select:focus,
+			#main textarea:focus {
+				border-color: #8cc9f0;
+				box-shadow: 0 0 0 1px #8cc9f0;
+			}
+
+		#main select {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='%23dddddd' /%3E%3C/svg%3E");
+		}
+
+			#main select option {
+				color: #636363;
+				background: #ffffff;
+			}
+
+		#main input[type="checkbox"] + label,
+		#main input[type="radio"] + label {
+			color: #636363;
+		}
+
+			#main input[type="checkbox"] + label:before,
+			#main input[type="radio"] + label:before {
+				background: rgba(222, 222, 222, 0.25);
+				border-color: #dddddd;
+			}
+
+		#main input[type="checkbox"]:checked + label:before,
+		#main input[type="radio"]:checked + label:before {
+			background-color: #636363;
+			border-color: #636363;
+			color: #ffffff;
+		}
+
+		#main input[type="checkbox"]:focus + label:before,
+		#main input[type="radio"]:focus + label:before {
+			border-color: #8cc9f0;
+			box-shadow: 0 0 0 1px #8cc9f0;
+		}
+
+		#main ::-webkit-input-placeholder {
+			color: rgba(99, 99, 99, 0.25) !important;
+		}
+
+		#main :-moz-placeholder {
+			color: rgba(99, 99, 99, 0.25) !important;
+		}
+
+		#main ::-moz-placeholder {
+			color: rgba(99, 99, 99, 0.25) !important;
+		}
+
+		#main :-ms-input-placeholder {
+			color: rgba(99, 99, 99, 0.25) !important;
+		}
+
+		#main .formerize-placeholder {
+			color: rgba(99, 99, 99, 0.25) !important;
+		}
+
+		#main .icon.major {
+			border-color: #dddddd;
+		}
+
+			#main .icon.major:before {
+				border-color: #dddddd;
+			}
+
+		#main .icon.alt {
+			border-color: #dddddd;
+			color: #636363;
+		}
+
+			#main .icon.alt:hover {
+				background-color: rgba(222, 222, 222, 0.25);
+			}
+
+			#main .icon.alt:active {
+				background-color: rgba(222, 222, 222, 0.5);
+			}
+
+		#main ul.alt li {
+			border-top-color: #dddddd;
+		}
+
+		#main dl dt {
+			color: #636363;
+		}
+
+		#main header.major h2:after {
+			background-color: #dddddd;
+			background-image: -moz-linear-gradient(90deg, 2, #a89cc8, #8cc9f0);
+			background-image: -webkit-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
+			background-image: -ms-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
+			background-image: linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
+		}
+
+		#main table tbody tr {
+			border-color: #dddddd;
+		}
+
+			#main table tbody tr:nth-child(2n + 1) {
+				background-color: rgba(222, 222, 222, 0.25);
+			}
+
+		#main table th {
+			color: #636363;
+		}
+
+		#main table thead {
+			border-bottom-color: #dddddd;
+		}
+
+		#main table tfoot {
+			border-top-color: #dddddd;
+		}
+
+		#main table.alt tbody tr td {
+			border-color: #dddddd;
+		}
+
+		#main .spotlight .image {
+			border-color: #dddddd;
+		}
+
+		#main > .main {
+			padding: 5em 5em 3em 5em ;
+			border-top: solid 1px #dddddd;
+		}
+
   .row.gtr-0.gtr-uniform > * {
     padding-top: 0em;
   }
@@ -1103,6 +1699,7 @@ hr {
   .row.gtr-25 > * {
     padding: 0 0 0 0.375em;
   }
+
 
   .row.gtr-25.gtr-uniform {
     margin-top: -0.375em;
@@ -2165,6 +2762,7 @@ textarea {
   padding: 0.75em 1em;
 }
 
+
 input[type="checkbox"],
 input[type="radio"] {
   -moz-appearance: none;
@@ -3096,6 +3694,9 @@ table.alt tbody tr td {
   margin-bottom: 0;
 }
 
+
+ */
+
 .spotlight .content header.major {
   margin: 0 0 2em 0;
 }
@@ -3107,6 +3708,7 @@ table.alt tbody tr td {
   border-radius: 100%;
   border: solid 1px;
 }
+
 
 .spotlight .image img {
   display: block;
@@ -3337,6 +3939,19 @@ body.is-preload #header.alt .logo {
   color: #636363;
 }
 
+
+/* ! 질문지 테두리 영역입니다 */
+.question-fieldset{
+	margin-left: 20%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	width: 60%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 20px;
+
+
 #nav h1,
 #nav h2,
 #nav h3,
@@ -3344,20 +3959,44 @@ body.is-preload #header.alt .logo {
 #nav h5,
 #nav h6 {
   color: #636363;
+
 }
 
 #nav blockquote {
   border-left-color: #dddddd;
 }
 
+
+/* !질문지 전체 테두리 영역 */
+.question-form{
+	/* background-color: goldenrod; */
+	border : 3px solid white;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 20px;
+	margin: 5%;
+	width: 90%;
+
 #nav code {
   background: rgba(222, 222, 222, 0.25);
   border-color: #dddddd;
 }
 
+
 #nav hr {
   border-bottom-color: #dddddd;
 }
+
+
+/* ! 예, 아니오, 모르겠습니다 부분
+   ! 각각 버튼 묶는 클래스 */
+.answerOptions{
+	/* background-color: gray;  */
+	margin-left: 20%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	width: 60%;
 
 #nav + #main {
   padding-top: 4.25em;
@@ -3791,6 +4430,7 @@ body.is-preload #header.alt .logo {
   padding: 5em 5em 3em 5em;
   width: calc(100% + 2em);
   margin: 0 0 3em -2em;
+
 }
 
 #footer > * {
@@ -3805,10 +4445,21 @@ body.is-preload #header.alt .logo {
   text-align: center;
 }
 
+
+/* ! 예, 아니오, 모르겠습니다 부분
+   ? 버튼 조작 클래스 */
+.ans_msg {
+	width: 40%;
+	margin-left: 28%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	background-color: black;
+}
 @media screen and (max-width: 1280px) {
   #footer {
     padding: 4em 4em 2em 4em;
   }
+
 }
 
 @media screen and (max-width: 980px) {
@@ -3830,10 +4481,23 @@ body.is-preload #header.alt .logo {
   }
 }
 
+
+
+
+/* ! 예, 아니오, 모르겠습니다 부분
+   ! 각각 버튼 묶는 클래스 */
+   .choiceBTN-group {
+	/* background-color: gray;  */
+	margin-left:  39%;
+	margin-top: 0.8%;
+	margin-bottom: 0.8%;
+	width: 20%;
+}
 @media screen and (max-width: 736px) {
   #footer {
     padding: 3em 2em 1em 2em;
   }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -3842,10 +4506,27 @@ body.is-preload #header.alt .logo {
   }
 }
 
+
+.prev_button {
+	margin-left: 8%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background-color: red;
+	
+ }
+
+ 
+.next_button {
+	margin-left: 28%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	background-color: red;
+}
 @media screen and (max-width: 480px) {
   #footer {
     padding: 2.5em 1em 0.5em 1em;
   }
+
 }
 
 /* !Wrapper */
@@ -3860,6 +4541,16 @@ body.is-preload #header.alt .logo {
   #wrapper {
     max-width: calc(100% - 2em);
   }
+}
+
+
+.sc-AxiKw{
+	text-decoration: none; color: grey;
+}
+
+.lbfQXB{
+
+	text-decoration-line:  red;
 }
 
 @media screen and (max-width: 360px) {
@@ -3919,3 +4610,4 @@ body.is-preload #header.alt .logo {
 .helpme {
   display: "";
 }
+
