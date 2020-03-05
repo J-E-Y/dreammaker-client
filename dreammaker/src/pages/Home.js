@@ -3,7 +3,8 @@ import { Link, Redirect } from "react-router-dom";
 import "../css/Result.css";
 import "../css/noscript.css";
 import log2 from "../log2.png";
-// const axios = require("axios");
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 class Home extends React.Component {
   constructor(props) {
@@ -123,9 +124,7 @@ class Home extends React.Component {
           }}
         >
           <center>
-            <h1 className="main-home">
-              Dreammaker
-            </h1>
+            <h1 className="main-home">Dreammaker</h1>
             <img src={log2} alt="log2" width="200" height="200" />
             <form
               style={{ marginLight: "200px" }}
@@ -133,34 +132,30 @@ class Home extends React.Component {
                 e.preventDefault();
 
                 const { id, password } = this.state;
-                fetch(
-                  "http://15.165.161.83:5000/user/signin",
-                  {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
+                axios
+                  .post(
+                    "http://15.165.161.83:5000/user/signin",
+                    {
                       real_user_id: id,
                       password: password
-                    })
-                  },
-                  { credentials: "include" }
-                )
-                  .then(data => {
-                    // 만약 데이터가 성공적으로 요청되고 응답을 받는다면
-                    // 응답은  200 서버로부터 받는다.
-
-                    if (data.status === 200) {
-                      return data.json();
+                    },
+                    {
+                      withCredentials: true
                     }
-                  })
-                  .then(data => {
-                    if (data.name && data.age && data.gender && data.moblie) {
+                  )
+                  .then(res => {
+                    if (
+                      res.data.name &&
+                      res.data.age &&
+                      res.data.gender &&
+                      res.data.moblie
+                    ) {
                       this.props.loginStateUpdate();
                       this.props.userInfoUpdate(
-                        data.name,
-                        data.age,
-                        data.gender,
-                        data.moblie
+                        res.data.name,
+                        res.data.age,
+                        res.data.gender,
+                        res.data.moblie
                       );
                     }
                   })
@@ -185,28 +180,22 @@ class Home extends React.Component {
                 ></input>
               </div>
               <div>
-
-
                 비밀번호
-
                 <input
                   className="login-password"
                   type="password"
                   onChange={this.handleInputValue("password")}
-                >
-                </input>
+                ></input>
               </div>
               <button className="login-btn" type="submit">
                 로그인
               </button>
             </form>
-            
-            
-            
+
             <div>
               <span
                 style={{
-                  margin: "32px",
+                  margin: "32px"
                   // fontSize: "35px"
                 }}
               >
@@ -214,7 +203,7 @@ class Home extends React.Component {
               </span>
               <span
                 style={{
-                   margin: "32px",
+                  margin: "32px"
                   // fontSize: "35px"
                 }}
               >

@@ -5,7 +5,9 @@ import ResultPage from "./ResultPage";
 import { Redirect, Link, withRouter, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import styled from "styled-components";
+import heart from "../images/heart.png";
 
+axios.defaults.withCredentials = true;
 class MainSurvey extends Component {
   // constructor(props) 와 super 를 만듬.
   // 밑에 render() 밑에 확인할수 있음.
@@ -13,6 +15,7 @@ class MainSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: "",
       userCheck: false, //회원인지..체크
       nonuserCheck: false, //비회원인지 쳌,
       currentQuestion: 0, // 배열 인덱스 초기 번호 [0]   ->  SurveyData[0]
@@ -23,8 +26,18 @@ class MainSurvey extends Component {
       obj_result: {}, //유형별 점수를 모두는 객체
       question_data: null, //filer를 거친 내용만 뿌려질 데이터
       answer_table: null, //뿌리지않은 질문데이터 객체타입
-      user_answer_reord: [] // 유저가 답변한 기록
+      user_answer_reord: [], // 유저가 답변한 기록
+      imagedata: heart
     };
+  }
+
+  imageDataRandom() {
+    let newArr = [];
+    newArr.push();
+    newArr.push();
+    newArr.push();
+    let index = Math.floor(Math.random() * 3);
+    this.setState({ imagedata: newArr[index] });
   }
 
   filetquestionTable = async (n1, n2) => {
@@ -96,6 +109,33 @@ class MainSurvey extends Component {
 
   // 첫 렌더 후에는 질문지 불러 온다.
   componentDidMount() {
+    //  어떤 유저 인지 체크..
+    const { nonuserCheck } = this.props;
+    if (this.props.nonUserId) {
+      axios
+        .post(" http://15.165.161.83:5000/nonuser/info", {
+          non_user_id: this.props.nonUserId
+        })
+        .then(result => {
+          console.log(result);
+          this.setState({
+            username: result.data.name,
+            nonuserCheck: this.props.nonUserId,
+            userCheck: false
+          });
+        });
+    } else {
+      axios
+        .get("http://15.165.161.83:5000/user/info", { withCredentials: true })
+        .then(result => {
+          this.setState({
+            username: result.data[0].name,
+            userCheck: result.data[0].user_id,
+            nonuserCheck: false
+          });
+        });
+    }
+
     axios.get("http://15.165.161.83:5000/ques/anyques").then(result => {
       let object = {};
 
@@ -256,7 +296,7 @@ class MainSurvey extends Component {
         }
       }
     }
-
+    this.putuserData(max_score, max_hol_id);
     if (
       this.state.currentQuestion === this.state.question_data.length - 1 &&
       object_length <= 2
@@ -269,11 +309,29 @@ class MainSurvey extends Component {
     }
   };
 
+  putuserData(score, hol_id) {
+    const { userCheck, nonuserCheck } = this.state;
+    if (userCheck) {
+      axios.post(" http://15.165.161.83:5000/user/inuser", {
+        user_id: userCheck,
+        score: score,
+        hol_id: hol_id
+      });
+    } else if (nonuserCheck) {
+      axios.post("http://15.165.161.83:5000/nonuser/inresult", {
+        non_user_id: nonuserCheck,
+        score: score,
+        hol_id: hol_id
+      });
+    }
+  }
+
   render() {
     console.log(">>>>>>>>nonUserId:>>>>>>>>>>>>>>>:", this.props.nonUserId);
     console.log(this.state);
 
     const {
+      username,
       answer_options,
       myAnswer,
       currentQuestion,
@@ -281,7 +339,8 @@ class MainSurvey extends Component {
       question_data,
       obj_result,
       max_hol_id,
-      max_score
+      max_score,
+      imagedata
     } = this.state;
 
     const SLink = styled(Link)`
@@ -332,13 +391,13 @@ class MainSurvey extends Component {
               <center>
                 {/*  질문이 들어갈 곳  */}
                 <h1>
-                  Q{currentQuestion + 1}. 당신은{this.state.questions}{" "}
+                  Q{currentQuestion + 1}. {username}님은 {this.state.questions}{" "}
                 </h1>
 
-                {/* 총 질문 중에 몇번째 질문인지  */}
+                {/* 총 질문 중에 몇번째 질문인지 
                 <h2>{`총${
                   this.state.question_data.length
-                }개 질문 중 ${currentQuestion + 1}번째 질문입니다.`}</h2>
+                }개 질문 중 ${currentQuestion + 1}번째 질문입니다.`}</h2> */}
               </center>
             </fieldset>
           </form>
@@ -425,6 +484,7 @@ class MainSurvey extends Component {
                 </button>
               )}
           </div>
+          <img src={this.state.imagedata} alt=""></img>
         </div>
       );
     } else if (question_data === null) {

@@ -3,7 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import "../css/Result.css";
 import "../css/noscript.css";
 import "../App.css";
-const axios = require("axios");
+//const axios = require("axios");
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 // axios.defaults.withCredentials = true;
 
@@ -14,6 +16,7 @@ class Signup extends React.Component {
       isSignUp: false,
       isPassword: false,
       passwordMessage: null,
+      idshowStore: false,
       showStore2: false,
       idMessage: "",
       showStore: false,
@@ -32,6 +35,7 @@ class Signup extends React.Component {
   }
   handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
+    let word = e.target.value;
     if (key === "id") {
       axios
         .post(
@@ -44,15 +48,21 @@ class Signup extends React.Component {
           }
         )
         .then(res => {
-          if (res.data !== "사용가능하지 않는 아이디 입니다. ") {
+          if (word === "") {
+            this.setState({ idMessage: "" });
+          } else if (res.data === "사용가능한 아이디입니다.") {
             this.setState({ showStore2: true });
+            this.setState({ idshowStore: true });
             this.setState({ idMessage: res.data });
           } else {
-            this.setState({ showStore2: false });
+            this.setState({ showStore2: true });
+            this.setState({ idshowStore: false });
+            this.setState({ idMessage: res.data });
           }
         });
     }
   };
+
   //? 성별(gender)input 을 핸들링하기위한 로직이 필요함
   //? ----------------------------------------
   // handleChange(event) {
@@ -97,27 +107,7 @@ class Signup extends React.Component {
       this.setState({ isPassword: true });
     }
   }
-  passwordCheck() {
-    axios
-      .post(
-        "http://15.165.161.83:5000/user/idcheck",
-        {
-          real_user_id: this.state.id
-        },
-        {
-          withCredentials: true
-        }
-      )
-      .then(res => {
-        if (res.data === "사용가능한 아이디입니다.") {
-          this.setState({ showStore2: true });
-        } else {
-          this.setState({ showStore2: false });
-        }
-      });
-  }
 
- 
   render() {
     console.log("this.state: ", this.state);
     if (this.state.isSignUp && this.state.isPassword) {
@@ -222,7 +212,7 @@ class Signup extends React.Component {
                   className="checkPassword"
                   style={{
                     fontSize: "20px",
-                    color: "red",
+                    color: this.state.idshowStore ? "blue" : "red",
                     display: this.state.showStore2 ? "block" : "none"
                   }}
                 >
@@ -292,7 +282,6 @@ class Signup extends React.Component {
               ></input>
             </div>
 
-
             <div className="radio-wrap">
               <div onChange={this.setGender.bind(this)}>
                 성별 :
@@ -317,11 +306,13 @@ class Signup extends React.Component {
             </div>
 
             <button
-              style={{
-                // fontSize: "35px",
-                // height: "100px",
-                // width: "100px"
-              }}
+              style={
+                {
+                  // fontSize: "35px",
+                  // height: "100px",
+                  // width: "100px"
+                }
+              }
               className="signup-btn"
               type="submit"
             >

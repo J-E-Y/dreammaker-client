@@ -1,7 +1,8 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
-
-const axios = require("axios");
+import axios from "axios";
+axios.defaults.withCredentials = true;
+//const axios = require("axios");
 class Nonsignup extends React.Component {
   constructor(props) {
     super(props);
@@ -112,11 +113,13 @@ class Nonsignup extends React.Component {
               <Link to="/login">이미 계정이 있나요?</Link>
             </div>
             <button
-              style={{
-                // fontSize: "35px",
-                // height: "100px",
-                // width: "100px"
-              }}
+              style={
+                {
+                  // fontSize: "35px",
+                  // height: "100px",
+                  // width: "100px"
+                }
+              }
               className="Nonsignup-btn"
               type="submit"
             >

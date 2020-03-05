@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../usericon.png";
 // const axios = require("axios");
-
+import axios from "axios";
+axios.defaults.withCredentials = true;
 //! 로그인 상태에서 link로 로그아웃 하기
 //* <Link to="/logout">로그아웃</Link> */
 
