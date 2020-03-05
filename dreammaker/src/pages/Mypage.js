@@ -37,6 +37,18 @@ export function Mypage(props) {
     console.log("Mypage-props.isLogin: ", props.isLogin);
     return (
       <div>
+        <div style={{ paddingLeft: "1600px" }}>
+          <span className="mypage-name2">{props.userinfo.name}</span>
+          <span
+            style={{
+              margin: "15px",
+              fontSize: "15px"
+            }}
+          >
+            <Link to="/logout">로그아웃하기</Link>
+          </span>
+        </div>
+
         <center>
           <h1 style={{ color: "white" }}>나의 정보</h1>
 
@@ -59,14 +71,6 @@ export function Mypage(props) {
             }}
           >
             <Link to="/survey">검사하러가기</Link>
-          </span>
-          <span
-            style={{
-              margin: "32px",
-              fontSize: "35px"
-            }}
-          >
-            <Link to="/logout">로그아웃하기</Link>
           </span>
         </center>
       </div>

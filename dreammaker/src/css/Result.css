@@ -141,10 +141,14 @@ input, select, textarea {
   color: rgba(255, 255, 255, 0.65);
 }
 
+/* font size */
+
+
 	body, input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
      /* font-family: 'Nanum Pen Script', cursive; */
         font-size: 17pt;
+
 		font-weight: 300;
 		line-height: 1.65;  
 	}
