@@ -33,9 +33,10 @@ class Home extends React.Component {
       console.log("Image URL: " + profile.getImageUrl());
       console.log("Email: " + profile.getEmail());
       //YOUR CODE HERE
+      let userName = profile.getName();
       if (googleUser.getAuthResponse().id_token) {
         this.props.funGoogleLogin();
-        console.log("logIn");
+        this.props.getChanged(userName);
       }
 
       // googleUser.isSignedIn.get();

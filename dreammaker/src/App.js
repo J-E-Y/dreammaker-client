@@ -1,4 +1,4 @@
-import React , { Component } from "react";
+import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -14,35 +14,35 @@ import { Logout } from "./pages/Logout";
 //! npm install axios
 
 class App extends React.Component {
-  constructor(props){
-    super(props)
- 
+  constructor(props) {
+    super(props);
+
     console.log("앱.js", props);
-    console.log("앱.js2" , this.props);
-  this.state = {
-    //? isLogin 은 로그인상태를 핸들링하기위한 변수
-    isLogin: false,
-    googleLogin: false,
-    nonUserId: null,
-    // UserId: null,
-    googleUserName: null,
+    console.log("앱.js2", this.props);
+    this.state = {
+      //? isLogin 은 로그인상태를 핸들링하기위한 변수
+      isLogin: false,
+      googleLogin: false,
+      nonUserId: null,
+      // UserId: null,
+      googleUserName: null,
 
-    nonUserName: "",
+      nonUserName: "",
 
-    //? 로그인 버튼을 누르면 서버로부터응답받은 정보들이 담긴다.
-    userinfo: {
-      id: "",
-      password1: "",
-      password2: "",
-      name: "",
-      moblie: "",
-      email: "",
-      gender: "",
-      age: ""
-    }
-  };
-}
-  
+      //? 로그인 버튼을 누르면 서버로부터응답받은 정보들이 담긴다.
+      userinfo: {
+        id: "",
+        password1: "",
+        password2: "",
+        name: "",
+        moblie: "",
+        email: "",
+        gender: "",
+        age: ""
+      }
+    };
+  }
+
   //? 로그인 버튼 클릭시 state 에 로그인상태를 true 로 바꾼다.
   loginStateUpdate() {
     this.setState({
@@ -51,7 +51,8 @@ class App extends React.Component {
   }
   funGoogleLogin() {
     this.setState({
-      googleLogin: true
+      googleLogin: true,
+      nonUserId: false
     });
   }
   funGoogleLogOut() {
@@ -61,7 +62,7 @@ class App extends React.Component {
   }
   getChanged(name) {
     this.setState({
-      nonUserName: name
+      googleUserName: name
     });
   }
 
@@ -103,11 +104,14 @@ class App extends React.Component {
   //? 비회원 가입시 사용될 함수
 
   render() {
-    console.log(this.state.userinfo.name);
+    console.log(
+      "App.js this.state.googleUserName : ",
+      this.state.googleUserName
+    );
     //? url => home은  처음화면 > 로그인 버튼 누르면 mypage 로 이동
     //? url => signup은 회원가입버튼누르면 이동 >  완료누르면 > home 다시 이동
     //? url => Nonsignup 비회원가입하면 이동 > 완료 누르면 > question 이동
-     console.log("this.props.max_hol_id", this.props.max_hol_id);
+
     //! 이동경로
     //! home(로그인) -> mypage -> question
     //! home(로그인) -> signup -> home(로그인) -> mypage -> question
@@ -126,6 +130,7 @@ class App extends React.Component {
                 userInfoUpdate={this.userInfoUpdate.bind(this)}
                 googleLogin={this.state.googleLogin}
                 funGoogleLogin={this.funGoogleLogin.bind(this)}
+                getChanged={this.getChanged.bind(this)}
               />
             )}
           />
@@ -143,17 +148,14 @@ class App extends React.Component {
               <Nonsignup
                 nonUserId={this.state.nonUserId}
                 NonSignupUserId={this.NonSignupUserId.bind(this)}
-                getChanged={this.getChanged.bind(this)}
                 nonUserName={this.state.nonUserName}
               />
             )}
           />
 
-
           <Route
             exact
             path="/survey"
-
             render={() => (
               <Surbey
                 nonUserId={this.state.nonUserId}
@@ -162,12 +164,12 @@ class App extends React.Component {
                 funGoogleLogOut={this.funGoogleLogOut.bind(this)}
                 isLogin={this.state.isLogin}
                 nonUserName={this.state.nonUserName}
+                googleUserName={this.state.googleUserName}
+                loginStateUpdate={this.loginStateUpdate.bind(this)}
               />
             )}
-
           />
 
-  
           {/* 결과 페이지로 넘어갈 수 있게 하는  Route 부분 입니다. */}
           {/* <Route 
           exact 
