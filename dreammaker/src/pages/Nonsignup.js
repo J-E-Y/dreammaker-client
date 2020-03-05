@@ -44,7 +44,7 @@ class Nonsignup extends React.Component {
     if (this.state.isNonSignUp && this.state.isPassword) {
       return (
         <div>
-          <Redirect to="/survey" />
+          <Redirect to="/survey"/>
         </div>
       );
     }

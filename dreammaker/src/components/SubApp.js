@@ -13,8 +13,10 @@ import { Images } from "./Images";
 ? 기능이 부족한 현재 페이지는 나중에 서베이 기능이 완성되면 합치던지 제거하던지 하려 합니다
 */
 
+
 // sub-app의 역할은
 // 설문 페이지를 전체적으로 보여줄 역할
+
 //!sub-app 안에 user-info(이름, 나이 , 성별,  시작하기)  - 비회원시 입력할 폼
 //! sub-app 안에 question.js,  child-q , child-a  그리고 pic-app 이 있다.
 //! 한 화면에 설문 데이터 다 보여주고(1번 제외한 나머지는 none) 버튼에 따라 다음 꺼 보여주는 식

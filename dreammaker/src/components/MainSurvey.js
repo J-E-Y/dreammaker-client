@@ -303,23 +303,6 @@ class MainSurvey extends Component {
     if (endPage) {
       return (
         <div className="result">
-          <h1>질문에 대한 결과로 총합점수가{this.state.score}점 입니다.</h1>
-          <h3>이 데이타 기반으로 유형별 점수 및 결론 도출 가능!</h3>
-
-          {/*  //?여기서는 이제 정답지 보여주는 것 인데 사실 필요는 없다. */}
-          <p>
-            선택한 내용입니다.
-            <ul>
-              {SurvayData.map((item, index) => (
-                <li className="ui floating message options" key={index}>
-                  {item.result_answer}
-                </li>
-              ))}
-            </ul>
-          </p>
-
-          {/* //! 결과페이지 컴포넌트 입니다. 위 isEnd 시 페이지와 연동 필요합니다. */}
-
           <ResultPage surveyFinish={max_hol_id}></ResultPage>
         </div>
       );
