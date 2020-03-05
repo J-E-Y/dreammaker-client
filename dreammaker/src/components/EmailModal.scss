@@ -1,0 +1,37 @@
+.Modal-overlay{
+    &.Modal-anim-enter {
+      opacity: 0.00;
+      transition: all 0.2s;
+    }
+    &.Modal-anim-enter.Modal-anim-enter-active {
+      opacity: 1;
+    }
+    &.Modal-anim-leave {
+      opacity: 1;
+      transition: all 0.2s;
+    }
+    &.Modal-anim-leave.Modal-anim-leave-active {
+      opacity: 0.00;
+    }
+  }
+  
+  .Modal{
+    &.Modal-anim-enter {
+      opacity: 0.00;
+      transform: translate(-50%, -50%) scale(0.7);
+      transition: all 0.2s;
+    }
+    &.Modal-anim-enter.Modal-anim-enter-active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    &.Modal-anim-leave {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 0.2s;
+    }  
+    &.Modal-anim-leave.Modal-anim-leave-active {
+      opacity: 0.00;
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+  }

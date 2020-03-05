@@ -5,6 +5,7 @@ import "../css/Result.css";
 import "../css/noscript.css";
 import Logo from "../images/logo.svg";
 import axios from "axios";
+import Modal from './EmailModal';
 
 // !  결과페이지 입니다.
 // !  템플릿을 가져왔기 때문에 수정해야할 부분들이 많습니다.
@@ -21,7 +22,8 @@ class ResultPage extends Component {
       HollandData: null,
       currentResult: 0, // 배열 인덱스 초기 번호 [0]
       hol_id: this.props.surveyFinish,
-      job_options: [] // 직업 묶은 초기 값 []
+      job_options: [], // 직업 묶은 초기 값 []
+      isModalOpen: false, 
     };
   }
 
@@ -104,7 +106,26 @@ class ResultPage extends Component {
     this.props.history.push("/survey");
   };
 
+
+
+
+openModal = () => {
+    this.setState({ isModalOpen: true });
+  }
+  
+  closeModal = () => {
+    this.setState({ isModalOpen: false }); 
+  }
+
+
   componentDidMount() {
+
+    // if(this.state.isModalOpen && this.props.history.action === "POP") {
+    //     this.setState({ isModalOpen: false }); 
+    //   }
+
+
+
     axios
       .post(`http://15.165.161.83:5000/holland/selhol`, {
         headers: { "Content-type": "application/json" },
@@ -123,6 +144,9 @@ class ResultPage extends Component {
         console.log("응답실패..", err);
       });
   }
+
+
+
 
   render() {
     const { answer_options, hol_title, hol_message, hol_image } = this.state;
@@ -252,7 +276,11 @@ class ResultPage extends Component {
             <footer className="major">
               <ul className="actions special">
                 <li>
-                  <button className="send_m">메시지 보내기</button>
+                <button className="send_m" onClick={this.openModal}>메시지 보내기</button>
+                <Modal 
+                isOpen={this.state.isModalOpen} 
+                close={this.closeModal} />
+
                   {/* <a href="generic.html" className="button primary">메시지 보내기</a> */}
                 </li>
               </ul>
