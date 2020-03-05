@@ -22,6 +22,7 @@ class Nonsignup extends React.Component {
     for (let key in this.state) {
       if (this.state[key] === "") {
         alert(key + " 가 입력되지 않았습니다.");
+        return;
       }
     }
     if (this.state.name !== "" && this.state.age !== "") {
