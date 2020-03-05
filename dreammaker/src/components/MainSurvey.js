@@ -31,12 +31,6 @@ class MainSurvey extends Component {
       // userLoginfromHome: this.props.userinfo.name
     };
   }
-  changedGoogleUserName() {
-    this.setState({
-      username: this.props.googleUserName
-    });
-    this.props.loginStateUpdate();
-  }
 
   imageDataRandom() {
     let newArr = [];
@@ -133,6 +127,10 @@ class MainSurvey extends Component {
           });
         });
     } else if (this.props.googleUserName) {
+      this.setState({
+        username: this.props.googleUserName
+      });
+      this.props.loginStateUpdate();
     } else {
       axios
         .get("http://15.165.161.83:5000/user/info", { withCredentials: true })
@@ -161,8 +159,7 @@ class MainSurvey extends Component {
 
       console.log("홀랜드 유형별 질문-객체", object);
       this.filterAnswerTable(2);
-      this.SurvayHandler(); //질문지 불러오는 것을 셋팅한다.
-      this.changedGoogleUserName();
+      this.SurvayHandler(); //질문지 불러오는 것을 셋팅한다
     });
   }
 
@@ -344,7 +341,6 @@ class MainSurvey extends Component {
     // console.log("isLoginprops=>>>: ", this.props.googleLogin);
     // console.log("비회원아이디 서베이 페이지 :", this.props.nonUserName);
     // console.log("googleUserName: ", this.props.googleUserName);
-    console.log("메인서베이 is Login:", this.props.isLogin);
     const {
       username,
       answer_options,

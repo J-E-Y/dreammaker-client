@@ -26,7 +26,7 @@ class App extends React.Component {
       nonUserId: null,
       // UserId: null,
       googleUserName: null,
-
+      auth2: null,
       nonUserName: "",
 
       //? 로그인 버튼을 누르면 서버로부터응답받은 정보들이 담긴다.
@@ -55,17 +55,24 @@ class App extends React.Component {
       nonUserId: false
     });
   }
-  funGoogleLogOut() {
-    this.setState({
-      isLogin: false
-    });
-  }
   getChanged(name) {
     this.setState({
       googleUserName: name
     });
   }
 
+  googlelogout(value) {
+    this.setState({
+      auth2: value
+    });
+  }
+  googleupdate() {
+    this.setState({
+      auth2: null,
+      googleLogin: false,
+      isLogin: false
+    });
+  }
   //? Logout.js 함수에서 사용하기위한 메소드
   //? 로그아웃버튼을 누르면 로그인상태에서 로그아웃상태로 바꾼다.
   //? 만약 로그인상태라면
@@ -76,7 +83,8 @@ class App extends React.Component {
       this.setState({
         isLogin: true
       });
-    } else {
+    } else if (this.state.isLogin === true) {
+      console.log("로그아웃");
       this.setState({ isLogin: false });
     }
   }
@@ -122,6 +130,7 @@ class App extends React.Component {
       <div>
         <Switch>
           <Route
+            exact
             path="/home"
             render={() => (
               <Home
@@ -131,6 +140,7 @@ class App extends React.Component {
                 googleLogin={this.state.googleLogin}
                 funGoogleLogin={this.funGoogleLogin.bind(this)}
                 getChanged={this.getChanged.bind(this)}
+                googlelogout={this.googlelogout.bind(this)}
               />
             )}
           />
@@ -161,11 +171,9 @@ class App extends React.Component {
                 nonUserId={this.state.nonUserId}
                 userinfo={this.state.userinfo}
                 googleLogin={this.state.googleLogin}
-                funGoogleLogOut={this.funGoogleLogOut.bind(this)}
                 isLogin={this.state.isLogin}
                 nonUserName={this.state.nonUserName}
                 googleUserName={this.state.googleUserName}
-                loginStateUpdate={this.loginStateUpdate.bind(this)}
               />
             )}
           />
@@ -196,17 +204,21 @@ class App extends React.Component {
                 isLogin={this.state.isLogin}
                 loginStateUpdate={this.loginStateUpdate.bind(this)}
                 upDate={this.update.bind(this)}
+                auth2={this.state.auth2}
+                googleupdate={this.googleupdate.bind(this)}
               />
             )}
           />
           <Route
             path="/"
             render={() => {
+              console.log(this.state);
               if (this.state.isLogin) {
                 console.log("현재 눌려지는 것", this.state.isLogin);
                 return <Redirect to="/mypage" />;
+              } else if (!this.state.isLogin || this.state.googleLogin) {
+                return <Redirect to="/home" />;
               }
-              return <Redirect to="/home" />;
             }}
           />
         </Switch>

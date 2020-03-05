@@ -38,32 +38,6 @@ class Home extends React.Component {
         this.props.funGoogleLogin();
         this.props.getChanged(userName);
       }
-
-      // googleUser.isSignedIn.get();
-      //     fetch(
-      //       "http://15.165.161.83:5000/user/signin",
-      //       {
-      //         method: "POST",
-      //         headers: { "Content-Type": "application/json" },
-      //         body: JSON.stringify({
-      //           real_user_id: id,
-      //           password: password
-      //         })
-      //       },
-      //       { credentials: "include" }
-      //     )
-      //       .then(data => {
-      //         // 만약 데이터가 성공적으로 요청되고 응답을 받는다면
-      //         // 응답은  200 서버로부터 받는다.
-      //         console.log("data.status: ", data.status);
-      //         if (data.status === 200) {
-      //           return data.json();
-      //         }
-      //       })
-
-      //   },
-      //   error => {
-      //     alert(JSON.stringify(error, undefined, 2));
     });
   };
 
@@ -76,6 +50,7 @@ class Home extends React.Component {
           cookiepolicy: "single_host_origin",
           scope: "profile email"
         });
+        this.props.googlelogout.call(this, this.auth2);
         this.prepareLoginButton();
       });
     };
