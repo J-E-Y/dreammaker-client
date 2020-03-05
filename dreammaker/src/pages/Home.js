@@ -36,7 +36,7 @@ class Home extends React.Component {
       let userName = profile.getName();
       if (googleUser.getAuthResponse().id_token) {
         this.props.funGoogleLogin();
-        this.props.getChanged(userName);
+        this.props.getChanged.call(this, userName);
       }
     });
   };

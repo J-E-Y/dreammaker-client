@@ -174,6 +174,7 @@ class App extends React.Component {
                 isLogin={this.state.isLogin}
                 nonUserName={this.state.nonUserName}
                 googleUserName={this.state.googleUserName}
+                loginStateUpdate={this.loginStateUpdate.bind(this)}
               />
             )}
           />
