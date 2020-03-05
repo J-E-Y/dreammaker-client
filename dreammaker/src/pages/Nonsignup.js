@@ -38,14 +38,14 @@ class Nonsignup extends React.Component {
   }
 
   render() {
-    console.log("this.state: ", this.state);
+    // console.log("this.state: ", this.state);
     //? 만약 사용자가 정보를 입력하고 완료 검사시작하기 버튼을 누르면
     //? isNonSignUp : true 로 바뀐다.
     //? 그러면 Redirect 로 question페이지로 이동시킨다.
     if (this.state.isNonSignUp && this.state.isPassword) {
       return (
         <div>
-          <Redirect to="/survey"/>
+          <Redirect to="/survey" />
         </div>
       );
     }
@@ -89,8 +89,11 @@ class Nonsignup extends React.Component {
                         { withCredentials: true }
                       )
                       .then(res => {
-                        console.log("비회원 아이디: ", res.data.name);
-                        this.props.getChanged(res.data.name);
+                        console.log(
+                          "비회원컴퍼넌트  res.data.name: ",
+                          res.data.name
+                        );
+                        this.props.NonSignupUserId(res.data.name);
                       });
                   }
                 });
