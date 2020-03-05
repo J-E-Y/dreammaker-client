@@ -89,9 +89,9 @@ class Nonsignup extends React.Component {
             </div>
             <button
               style={{
-                fontSize: "35px",
-                height: "100px",
-                width: "100px"
+                // fontSize: "35px",
+                // height: "100px",
+                // width: "100px"
               }}
               className="Nonsignup-btn"
               type="submit"

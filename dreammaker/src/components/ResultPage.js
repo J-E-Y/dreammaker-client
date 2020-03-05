@@ -10,38 +10,27 @@ import axios from 'axios';
 // !  결과페이지 입니다.
 // !  템플릿을 가져왔기 때문에 수정해야할 부분들이 많습니다.
 // !  css는 건드릴 필요는 없고, 
-// !  렌더 부분의 태그들 수정해 주시면 됩니다.
+// !  렌더 부분의 태그들 수정해 주시면 됩니다.1
 
 class ResultPage extends Component {
 
-      state = {
-        
+    constructor(props) {
+        super(props);
+ 
+        console.log('프롭스값1', this.props.surveyFinish);
+        // surveyFinish: 1~6
+      this.state = {
         HollandData: null,
-
-        hol_id: null,
-
+        hol_id: this.props.surveyFinish,
         job_options : [],  
-    
-
-         person: "박성용",
-          resultData : [
-              { id: 0,
-                title: '예술형',
-				message: `예술형은 예술 작업에 직접 참여하거나 관객 또는 관찰자가 되는 것을 좋아합니다.
-				예술형이라고 해서 꼭 예술가가 되는 것은 아니고 예술과 관련된 여가를 즐기는 사람도 해당됩니다.  
-				자신에게 예술형의 특징이 있다고 해서 꼭 예술 분야 직업을 갖는게 아니라 예술을 즐기는 사람들도 많다는 뜻입니다. 
-				예술형은 창의성을 지향합니다.아이디어를 새로운 방식으로 표현해 내는 작업, 똑같은 사물이나 현상을 보았어도자신만의 독특한 방식으로 표현하는 것을 좋아합니다. 
-				항상 뭔가를 그리거나 만들고,곡을 만들고 장식하기를 좋아합니다.`, 
-
-                jobName: '유튜브 크리에이터' 
-
-              }
-    ]
       };
+    }
+
+ 
 
     HollandHandler = () => {
     console.log("홀란드데이터", this.state.HollandData);
-    
+    console.log(this.state.hol_id, 'hol_id값?');
     let hol_title = this.state.HollandData[0].hol_name; // 홀란드 유형
      console.log("홀란드유형은?:" , hol_title);
 
@@ -63,6 +52,14 @@ class ResultPage extends Component {
     let hol_jobs_image = this.state.HollandData[0].jobs[0].job_image;
     console.log('직업이미지' , hol_jobs_image);
     
+    console.log(this.state.hol_id, 'hol_id값?');
+
+    let result_id = this.state.hol_id;
+    console.log('리절트 아이디 값: ', result_id);
+
+
+
+
     this.setState(() => {
         // 클릭하면 다음 순서대로 데이터 보여준다.
         // 새로 화면이 렌더 되어지므로 생명주기 api를 사용해야할듯?
@@ -73,7 +70,8 @@ class ResultPage extends Component {
             hol_jobs_name: hol_jobs_name,
             hol_jobs_detail: hol_jobs_detail,
             hol_jobs_image : hol_jobs_image,
-            answer_options: hol_jobs
+            answer_options: hol_jobs,
+            hol_id : result_id
         };
       });
 
@@ -82,33 +80,24 @@ class ResultPage extends Component {
 }
 
 
-
-
-
-    
       componentDidMount(){
  
         axios.post(`http://15.165.161.83:5000/holland/selhol`, 
         { headers:  {'Content-type': 'application/json'}, 
-         hol_id : '1'})
+         hol_id : this.props.surveyFinish})
         .then(res => { 
-            this.setState({HollandData : res.data});
+            this.setState({
+                HollandData : res.data,
+            });
             this.HollandHandler();
          //  console.log('홀란드:' , this.state.HollandData);
         // console.log('response', JSON.stringify(res.data, null, 2));
-        console.log('job', res.data[0].jobs[0]);  // 정원사
+        console.log('job', res.data[0].jobs[0]);  // 
         })
         .catch( err => { 
             console.log('응답실패..', err) 
         })
-
-       
       }
-
-
-
-
-
 
 
     render() {
@@ -177,7 +166,7 @@ class ResultPage extends Component {
                     <ul className="features">
                         <li>
               <span className="icon solid major style1 fa-code">
-                  <img src={hol_jobs_image} alt="정원사" width='100%' height='100%' 
+                  <img src={hol_jobs_image} alt={hol_jobs_name} width='100%' height='100%' 
                   style={{objectFit:'fill',borderRadius:'50%'}}/>
                      
                      
@@ -190,17 +179,20 @@ class ResultPage extends Component {
 
                         <li>
                             <span className="icon major style3 fa-copy">
-                            <img src={''} alt="지금은 Null값" width='100%' height='100%' 
+                        <img src={hol_jobs_image} alt={hol_jobs_name} width='100%' height='100%' 
                             style={{objectFit:'fill',borderRadius:'50%'}}/>
    
                             </span>
-                            <h3>연예인 매니저</h3>
-                            <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+                            <h3>{hol_jobs_name}</h3>
+                            <p>{hol_jobs_detail}</p>
                         </li>
                         <li>
-                            <span className="icon major style5 fa-gem"></span>
-                            <h3>펭수</h3>
-                            <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+                            <span className="icon major style5 fa-gem">
+                            <img src={hol_jobs_image} alt={hol_jobs_name} width='100%' height='100%' 
+                            style={{objectFit:'fill',borderRadius:'50%'}}/>
+                            </span>
+                            <h3>{hol_jobs_name}</h3>
+                            <p>{hol_jobs_detail}</p>
                         </li>
                     </ul>
                     <footer className="major">
@@ -297,8 +289,8 @@ class ResultPage extends Component {
                     <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
                     <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
                     <li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-                    <li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
-                </ul> */}
+                    <li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li> */}
+                {/* </ul> */}
             </section>
             <p className="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
         </footer>

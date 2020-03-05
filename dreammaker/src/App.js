@@ -9,6 +9,7 @@ import Surbey from "./components/MainSurvey";
 import { Mypage } from "./pages/Mypage";
 import { Logout } from "./pages/Logout";
 
+
 //! package 설치
 //! npm install react-router-dom
 //! npm install axios
@@ -93,6 +94,7 @@ class App extends React.Component {
 
     return (
       <div>
+       
         <Switch>
           <Route
             path="/home"

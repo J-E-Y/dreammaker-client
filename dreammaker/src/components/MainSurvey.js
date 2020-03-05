@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import styled from "styled-components";
 
 
+
 class MainSurvey extends Component {
   state = {
     currentQuestion: 0, // 배열 인덱스 초기 번호 [0]   ->  SurveyData[0]
@@ -16,12 +17,16 @@ class MainSurvey extends Component {
     endPage: false, // 마지막 페이지인지.
     obj_result: {}, //유형별 점수를 모두는 객체
     question_data: null, //filer를 거친 내용만 뿌려질 데이터
-    answer_table: null //뿌리지않은 질문데이터 객체타입
+    answer_table: null, //뿌리지않은 질문데이터 객체타입
+    modal : false,      // 모달창 , 기본 비활성화
+    
   };
 
  
   filetquestionTable = async (n1, n2) => {
+
     const { answer_table } = this.state;
+
     let object = {};
     object[n1] = answer_table[n1];
     object[n2] = answer_table[n2];
@@ -29,12 +34,14 @@ class MainSurvey extends Component {
       answer_table: object
     });
     return object;
+  
   };
+
 
   filterAnswerTable(n) {
     let newArr = [];
     for (let key in this.state.answer_table) {
-      debugger;
+      // debugger;
       let count = 0;
       while (count !== n) {
         let index = Math.floor(
@@ -44,7 +51,7 @@ class MainSurvey extends Component {
         this.state.answer_table[key].splice(index, 1); //특정 배열 인덱스 를 뺸다.
         count++;
       }
-    }
+    } 
     this.setState({
       currentQuestion: 0,
       question_data: newArr //n개씩 유형별로 나눈것을 question_data 에 셋팅
@@ -55,31 +62,41 @@ class MainSurvey extends Component {
 
   // 질문지 불러오는 것
   SurvayHandler = () => {
-    // console.log(SurvayData[0].question)
-    console.log(this.state.question_data);
+    
 
+    console.log("질문지 데이터입니다.[{...}]", this.state.question_data);
     let question1 = this.state.question_data[this.state.currentQuestion]
       .ques_msg; //질문
-    console.log("question", question1);
+    console.log("SurvayHandler -질문 입니다.", question1);
     let result_answer1 = this.state.question_data[this.state.currentQuestion]
     .answers; //  답변
-    console.log("answer", result_answer1);
+    console.log("SurvayHandler -답변 입니다.", result_answer1);
 
+    let typeId = this.state.question_data[this.state.currentQuestion]
+    .hol_id;  // 홀랜드 유형 아이디.
+    console.log("SurvayHandler - 홀란드 id입니다.", typeId);
 
-
-    
     this.setState(() => {
       // 클릭하면 다음 순서대로 데이터 보여준다.
       // 새로 화면이 렌더 되어지므로 생명주기 api를 사용해야할듯?
       return {
         questions: question1,
-        answer_options: result_answer1
+        answer_options: result_answer1,
+        typeId : typeId
       };
     });
   };
 
 
-  
+  // ! 모달창 활성화
+ modal_Active = () => {
+  this.setState({modal : true});
+}
+
+// ! 모달창 비활성화
+modal_inActive = () => {
+ this.setState({modal : false});
+}
 
   // 첫 렌더 후에는 질문지 불러 온다.
   componentDidMount() {
@@ -98,6 +115,7 @@ class MainSurvey extends Component {
         answer_table: object
       });
 
+      console.log('홀랜드 유형별 질문-객체' , object);
       this.filterAnswerTable(2);
       this.SurvayHandler(); //질문지 불러오는 것을 셋팅한다.
     });
@@ -107,10 +125,16 @@ class MainSurvey extends Component {
   nextQuestionHandler = () => {
     // console.log('test')
     const { myAnswer, obj_result, question_data, currentQuestion } = this.state;
+    
+    let object_length = 0;
+    for (let key in obj_result) {
+      object_length++;
+    }
+  
 
-    console.log(myAnswer);
-    console.log("question_data");
-    console.log(question_data[currentQuestion]);
+    console.log('대답을 선택한 부분입니다.',myAnswer); // 네, 아니오, 잘 모르겠습니다.
+ 
+    console.log('지난 질문지의 데이터 입니다.',question_data[currentQuestion]);
     let holland = question_data[currentQuestion].holland;
     // 선택한 답변과  정답이 맞으면 스코어 점수 올라간다.
     if (!obj_result[holland.hol_name]) {
@@ -120,7 +144,7 @@ class MainSurvey extends Component {
     let selanswer = question_data[currentQuestion].answers.filter(result => {
       return result.ans_msg === myAnswer;
     });
-    console.log(selanswer);
+    console.log('여기는 내가 선택한 대답과, 스코어 부분입니다.' ,selanswer);
     obj_result[holland.hol_id] += selanswer[0].score;
     // 그와 동시에 질문 인덱스 번호 +1 해서 다음 질문으로 넘어가게 한다.
 
@@ -147,10 +171,20 @@ class MainSurvey extends Component {
       this.setState({
         obj_result: newObj
       });
-    }
+    
+    } 
+    
 
-    console.log(this.state.currentQuestion);
+    // else if (currentQuestion === question_data.length - 1 && object_length === 2){
+    //   this.setState({
+    //     modal: true
+    //   });
+    // }
+
+    console.log("지난 인덱스 값입니다.",this.state.currentQuestion);
   };
+
+
 
 
   //  이전 질문 핸들러
@@ -206,18 +240,24 @@ class MainSurvey extends Component {
     if (this.state.currentQuestion !== prevState.currentQuestion) {
       // 화면에 안보이게 한다.
 
+      let question1 = this.state.question_data[this.state.currentQuestion]
+      .ques_msg; //질문
+      console.log("componentDid부분", question1);
 
-      
-      let question1 = this.state.question_data[this.state.currentQuestion].ques_msg; //질문
-      console.log("question", question1);
+      let typeId = this.state.question_data[this.state.currentQuestion]
+      .hol_id;  // 홀랜드 유형 아이디.
+      console.log("componentDid부분 - 홀란드 id입니다.", typeId);
+  
+
 
       let result_answer1 = this.state.question_data[this.state.currentQuestion].answers;
-
+      console.log("componentDid부분-답변데이터",  result_answer1);
       this.setState(() => {
         return {
           disabled: true,
           questions: question1,
-          answer_options: result_answer1
+          answer_options: result_answer1,
+          typeId: typeId
         };
       });
     }
@@ -226,11 +266,16 @@ class MainSurvey extends Component {
   //답변 클릭시 핸들링 대답은 선택되어지고, 버튼은 활성화 된다.
   checkAnswer = answer => {
     this.setState({ myAnswer: answer, disabled: false });
+  
   };
+
 
   // 마지막 완료 버튼 핸들링   SurvayData[마지막질문] === SurvayData.length -1 이 같으면
   surveyFinish = () => {
     //object 타입의 경우가 2개이하일때만...더많을떄는 필터링을 시도한다...
+    let typeId = this.state.question_data[this.state.currentQuestion]
+      .hol_id;  // 홀랜드 유형 아이디.
+      console.log("surveyFinish부분 - 홀란드 id입니다.", typeId);
     const { obj_result } = this.state;
     let object_length = 0;
     for (let key in obj_result) {
@@ -242,27 +287,27 @@ class MainSurvey extends Component {
       object_length <= 2
     ) {
       this.setState({
-        endPage: true
+        endPage: true,
+        typeId : typeId
       });
     }
   };
 
   render() {
-    console.log(this.state);
+    // console.log('렌더 후에 받아오는 데이터들' ,this.state);
     const {
       answer_options,
       myAnswer,
       currentQuestion,
       endPage,
       question_data,
-      obj_result
+      obj_result,
+      
     } = this.state;
 
 
     const SLink = styled(Link)
      `text-decoration-color: red`
-
-
 
     let object_length = 0;
     for (let key in obj_result) {
@@ -289,7 +334,9 @@ class MainSurvey extends Component {
           </p>
 
           {/* //! 결과페이지 컴포넌트 입니다. 위 isEnd 시 페이지와 연동 필요합니다. */}
-          <ResultPage></ResultPage>
+          <ResultPage
+           surveyFinish={this.state.typeId}
+          ></ResultPage>
         </div>
       );
 
@@ -303,8 +350,8 @@ class MainSurvey extends Component {
           <legend>DreamMaker가 여러분의 꿈을 응원합니다!</legend>
           <center> 
           {/*  질문이 들어갈 곳  */}
-          <h1>Q{currentQuestion + 1}. 당신은{this.state.questions} </h1>
-
+          <h1>Q{currentQuestion + 1}. {this.state.questions} </h1>
+          <h2>현재 홀랜드 유형 아이디 번호입니다.  {this.state.typeId}번 유형</h2>
           {/* 총 질문 중에 몇번째 질문인지  */}
           <h2>{`총${this.state.question_data.length}개 질문 중 ${currentQuestion + 1}번째 질문입니다.`}</h2>
 
@@ -312,6 +359,8 @@ class MainSurvey extends Component {
           </center>
            </fieldset>
             </form>
+
+
 
           {/* 답변에 대한 배열 다루기 */}
           {answer_options.map((option, index) => (
@@ -323,27 +372,17 @@ class MainSurvey extends Component {
               onClick={() => this.checkAnswer(option.ans_msg)}>
               {/*  화면에 보여질 옵션 내용 ->  네, 아니오, 잘 모르겠어요 */}
 
-              <button className="ans_msg"><h3>{option.ans_msg}</h3></button>
+          <button className="ans_msg"><h3 style={{color:'white'}}>{option.ans_msg}</h3></button>
             </div>
             
           ))}
          
-     
-
 
       {/* //! 맨 첫페이지 일 경우에는 이전버튼이 아니라 홈으로 가기 버튼이 나와야 한다.  */}
- 
          <div className='choiceBTN-group'>
           {/* //!이전 버튼 클릭시에 이전 페이지로 넘어가기*/}
-
-
-          {/* 다음버튼 클릭시에 질문이 더 남았다면 다음 질문이 나오게 하고, 총 질문의 갯수를 줄여나간다.(끝까지)*/}
-          {(currentQuestion < this.state.question_data.length - 1 ||
-            object_length > 2) && (
-
-
-            // 다음 버튼
-    
+     
+          {currentQuestion === 0 && (
             
             <SLink to="/">
            <button
@@ -353,25 +392,18 @@ class MainSurvey extends Component {
             홈으로 
             </button>
              </SLink >
-           
-          
+ 
           )}
         
 
-
-          {currentQuestion < this.state.question_data.length - 1 && (
-
-
-            // 다음 버튼
-      
+    {/* //! 인덱스가 1 이상이면 이전질문 버튼 활성화  */}
+           {currentQuestion  >=  1  && (
             <button
-
               className="prev_button"
               // 버튼은 답 클릭전에는 비활성화 되어있다. 클릭시에 활성화된다.
               disabled={this.state.disabled}
               // 여기서 이전 질문 핸들러가 된다.
-              onClick={this.prevQuestionHandler}
-            >
+              onClick={this.prevQuestionHandler}>
               이전 질문
             </button>
           )}
@@ -379,7 +411,7 @@ class MainSurvey extends Component {
 
 
 
-       {/* 다음버튼 클릭시에 질문이 더 남았다면 다음 질문이 나오게 하고, 총 질문의 갯수를 줄여나간다.(끝까지)*/}
+       {/* //!다음버튼 클릭시에 질문이 더 남았다면 다음 질문이 나오게 하고, 총 질문의 갯수를 줄여나간다.(끝까지)*/}
        {(currentQuestion < this.state.question_data.length - 1 ||
         object_length > 2) && (
             // 다음 버튼
@@ -388,19 +420,18 @@ class MainSurvey extends Component {
               // 버튼은 답 클릭전에는 비활성화 되어있다. 클릭시에 활성화된다.
               disabled={this.state.disabled}
               // 여기서 다음 질문 핸들러가 된다.
-              onClick={this.nextQuestionHandler}
-            >
+              onClick={this.nextQuestionHandler}>
               다음 질문
               
             </button>
             
           )}
 
-     
+         {/* //! object_length는 질문의 케이스가 1,2 라는 얘기  */}
 
           {/* //! 질문지의 마지막에는 finish 버튼 작동하게 한다. */}
           {/* //adding a finish button */}
-          {currentQuestion === this.state.question_data.length - 1 &&
+         {currentQuestion === this.state.question_data.length - 1 &&
             object_length <= 2 && (
               <button
                 className="survey-finish-button"
@@ -414,7 +445,7 @@ class MainSurvey extends Component {
 
       );
     } else if (question_data === null) {
-      return <div className="App"> </div>;
+      return <div className="App">잘못되었어요...</div>;
     }
   }
 }

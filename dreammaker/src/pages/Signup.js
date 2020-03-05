@@ -115,6 +115,8 @@ class Signup extends React.Component {
         }
       });
   }
+
+ 
   render() {
     console.log("this.state: ", this.state);
     if (this.state.isSignUp && this.state.isPassword) {
@@ -288,11 +290,22 @@ class Signup extends React.Component {
                 onChange={this.handleInputValue("email")}
               ></input>
             </div>
+
+
+            <div className="radio-wrap">
             <div onChange={this.setGender.bind(this)}>
               성별 :
-              <input type="radio" value="남" name="gender" /> 남
-              <input type="radio" value="여" name="gender" /> 여
-            </div>
+              
+              <input id="gender1" type="radio" value="남" name="gender"/> 
+              <label htmlFor="gender1">남</label>
+           
+      
+              <input id="gender2" type="radio" value="여" name="gender"/> 
+              <label htmlFor="gender2">여</label>
+              </div>
+              </div>
+
+
             <div>
               나이
               <input
@@ -308,9 +321,9 @@ class Signup extends React.Component {
 
             <button
               style={{
-                fontSize: "35px",
-                height: "100px",
-                width: "100px"
+                // fontSize: "35px",
+                // height: "100px",
+                // width: "100px"
               }}
               className="signup-btn"
               type="submit"
