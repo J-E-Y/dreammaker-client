@@ -4,16 +4,23 @@ import axios from "axios";
 import ResultPage from "./ResultPage";
 
 class MainSurvey extends Component {
-  state = {
-    currentQuestion: 0, // 배열 인덱스 초기 번호 [0]   ->  SurveyData[0]
-    myAnswer: null, // 대답은 선택 안되어 있음
-    answer_options: [], // 선택 버튼 묶은 초기 값 []
-    disabled: true, // 안보이기
-    endPage: false, // 마지막 페이지인지.
-    obj_result: {}, //유형별 점수를 모두는 객체
-    question_data: null, //filer를 거친 내용만 뿌려질 데이터
-    answer_table: null //뿌리지않은 질문데이터 객체타입
-  };
+  // constructor(props) 와 super 를 만듬.
+  // 밑에 render() 밑에 확인할수 있음.
+  //  console.log(">>>>>>>>nonUserId:>>>>>>>>>>>>>>>:", this.props.nonUserId);
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentQuestion: 0, // 배열 인덱스 초기 번호 [0]   ->  SurveyData[0]
+      myAnswer: null, // 대답은 선택 안되어 있음
+      answer_options: [], // 선택 버튼 묶은 초기 값 []
+      disabled: true, // 안보이기
+      endPage: false, // 마지막 페이지인지.
+      obj_result: {}, //유형별 점수를 모두는 객체
+      question_data: null, //filer를 거친 내용만 뿌려질 데이터
+      answer_table: null //뿌리지않은 질문데이터 객체타입
+    };
+  }
 
   filetquestionTable = async (n1, n2) => {
     const { answer_table } = this.state;
@@ -29,7 +36,6 @@ class MainSurvey extends Component {
   filterAnswerTable(n) {
     let newArr = [];
     for (let key in this.state.answer_table) {
-      debugger;
       let count = 0;
       while (count !== n) {
         let index = Math.floor(
@@ -194,6 +200,7 @@ class MainSurvey extends Component {
   };
 
   render() {
+    console.log(">>>>>>>>nonUserId:>>>>>>>>>>>>>>>:", this.props.nonUserId);
     console.log(this.state);
     const {
       answer_options,
