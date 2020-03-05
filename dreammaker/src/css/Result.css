@@ -142,11 +142,11 @@ input, select, textarea {
 }
 
 	body, input, select, textarea {
-		/* font-family: "Source Sans Pro", Helvetica, sans-serif; */
-    font-family: 'Nanum Pen Script', cursive;
-    font-size: 17pt;
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+     /* font-family: 'Nanum Pen Script', cursive; */
+        font-size: 17pt;
 		font-weight: 300;
-		line-height: 1.65;
+		line-height: 1.65;  
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -3928,6 +3928,16 @@ div.radio-wrap {
   font-size : 8em;
 }
 
+
+.lastname{
+	/* font-family: 'Trade Winds', cursive; */
+	/* font-family: 'Kaushan Script', cursive; */
+	/* font-family: 'Lacquer', sans-serif; */
+	/* font-family: 'Gloria Hallelujah', cursive; */
+	font-family: 'Nanum Pen Script', cursive;
+	margin: 10px;
+	font-size : 8em;
+  }
 
 
 
