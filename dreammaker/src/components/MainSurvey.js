@@ -358,7 +358,10 @@ class MainSurvey extends Component {
     if (endPage) {
       return (
         <div className="result">
-          <ResultPage surveyFinish={max_hol_id}></ResultPage>
+          <ResultPage
+            surveyFinish={max_hol_id}
+            username={username}
+          ></ResultPage>
         </div>
       );
 
