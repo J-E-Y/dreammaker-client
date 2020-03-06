@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../css/Result.css";
 import "../css/noscript.css";
-import log2 from "../log2.png";
+import log2 from "../logo2.png";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -93,16 +93,10 @@ class Home extends React.Component {
       );
     } else {
       return (
-        <div
-          style={{
-            marginBottom: "30px",
-            marginTop: "30px",
-            borderRadius: "10px"
-          }}
-        >
+        <div>
           <center>
             <h1 className="main-home">Dreammaker</h1>
-            <img src={log2} alt="log2" width="200" height="200" />
+            <img className="main-img" src={log2} alt="log2" />
             <form
               style={{ marginLight: "200px" }}
               onSubmit={e => {
@@ -164,48 +158,38 @@ class Home extends React.Component {
                   onChange={this.handleInputValue("password")}
                 ></input>
               </div>
-              <button className="login-btn" type="submit">
+              
+              <div className="button-wrap">
+              <button className="mlogin-btn" type="submit">
                 로그인
               </button>
-            </form>
+              <button
+                className="loginBtn loginBtn--google"
+                ref="googleLoginBtn">
+                Login with Google</button></div>
+           
 
-            <div>
-              <span
-                style={{
-                  margin: "32px"
-                  // fontSize: "35px"
-                }}
-              >
-                <Link to="/signup">회원가입</Link>
-              </span>
-              <span
-                style={{
-                  margin: "32px"
-                  // fontSize: "35px"
-                }}
-              >
-                <Link to="/nonuser/signup">비회원가입</Link>
-              </span>
-              <div className="row mt-5">
+                <div className="signn">
+             
+               <button className="linkSignup"><Link to="/signup" >회원가입</Link></button>
+           
+           
+               <button className="nonlinkSignup"><Link to="/nonuser/signup" >비회원가입</Link></button>
+                </div>
+              </form>
+              {/* <div className="row mt-5">
                 <div className="col-md-12">
                   <div className="card mt-3">
                     <div className="card-body">
                       <div className="row mt-5 mb-5">
                         <div className="col-md-4 mt-2 m-auto ">
-                          <button
-                            className="loginBtn loginBtn--google"
-                            style={{ marginLeft: "790px" }}
-                            ref="googleLoginBtn"
-                          >
-                            Login with Google
-                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+            </div>*/}
+           
           </center>
         </div>
       );
