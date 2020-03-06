@@ -57,7 +57,7 @@ class Nonsignup extends React.Component {
       //? 비회원가입이 완료시킨다.
       <div>
         <center>
-          <h1 className="nonsignupPLZ">비회원가입</h1>
+          <h1 style={{ color: "white" }}>비회원가입</h1>
           <form
             onSubmit={event => {
               event.preventDefault();
@@ -99,7 +99,7 @@ class Nonsignup extends React.Component {
                 });
             }}
           >
-            <div className="non_id">
+            <div>
               이름 :
               <input
                 className="Nonsignup-name"
@@ -108,15 +108,15 @@ class Nonsignup extends React.Component {
               ></input>
             </div>
             <div className="radio-wrap">
-              <div className="signup_gen"  onChange={this.nonSetGender.bind(this)}>
+              <div onChange={this.nonSetGender.bind(this)}>
                 성별 :
                 <input id="gender10" type="radio" value="남" name="gender" />
-                <label className="signup_genm"  htmlFor="gender10">남</label>
+                <label htmlFor="gender10">남</label>
                 <input id="gender20" type="radio" value="여" name="gender" />
-                <label className="signup_genf"  htmlFor="gender20">여</label>
+                <label htmlFor="gender20">여</label>
               </div>
             </div>
-            <div className="non_age">
+            <div>
               나이 :
               <input
                 className="Nonsignup-age"
@@ -124,11 +124,18 @@ class Nonsignup extends React.Component {
                 onChange={this.handleInputValue("age")}
               ></input>
             </div>
-            <div className="signup_home" >
+            <div>
               <Link to="/login">홈으로 가기</Link>
             </div>
             <button
-              className="signup-btn"
+              style={
+                {
+                  // fontSize: "35px",
+                  // height: "100px",
+                  // width: "100px"
+                }
+              }
+              className="Nonsignup-btn"
               type="submit"
             >
               검사 시작
