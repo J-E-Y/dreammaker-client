@@ -10,6 +10,20 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+html {
+	background-image: url("../images/overlay.png") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	background-image: url("../images/overlay.png"), -moz-linear-gradient(45deg, #5f4d93 15%, #e37682 85%); /* For Safari 5.1 to 6.0 */
+	background-image: url("../images/overlay.png"), -webkit-linear-gradient(45deg, #5f4d93 15%, #e37682 85%);/* For Opera 11.1 to 12.0 */
+	background-image: url("../images/overlay.png"), -ms-linear-gradient(45deg, #5f4d93 15%, #e37682 85%); /* For Firefox 3.6 to 15 */
+	background-image: url("../images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);/* Standard syntax */
+
+
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -59,6 +73,7 @@ body {
 	-webkit-text-size-adjust: none;
 }
 
+
 mark {
 	background-color: transparent;
 	color: inherit;
@@ -83,13 +98,16 @@ input, select, textarea {
 	}
 
 	body {
+		
 		-ms-overflow-style: scrollbar;
+		
 	}
 
 	@media screen and (max-width: 480px) {
 
 		html, body {
 			min-width: 320px;
+			
 		}
 
 	}
@@ -104,17 +122,12 @@ input, select, textarea {
 
 	/* !배경 그라데이션 부분 담당 */
 	body {
-		/* background-color: #935d8c;
+		background-color: #935d8c;
 		background-image: url("../images/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 		background-image: url("../images/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 		background-image: url("../images/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("../images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%); */
+		background-image: url("../images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 
-		background-color: #397fb3; /* For browsers that do not support gradients */
-		background-image: url("../images/overlay.png"),-webkit-linear-gradient(45deg, #e37682  15% , #397fb3 85%) ; /* For Safari 5.1 to 6.0 */
-		background-image: url("../images/overlay.png"),-ms-linear-gradient(45deg, #e37682   15%, #397fb3 85%); /* For Opera 11.1 to 12.0 */
-		background-image: url("../images/overlay.png"),-moz-linear-gradient(45deg, #e37682  15%, #397fb3 85%); /* For Firefox 3.6 to 15 */
-		background-image: url("../images/overlay.png"),linear-gradient(45deg, #e37682 15%, #397fb3 85%); /* Standard syntax */
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -135,7 +148,7 @@ input, select, textarea {
  /* !! 배경 전체의 색 담당. 여기 배경 설정하고 106번 줄 지우면 색상이 변한다. */
  body {
   /* !그라데이션 배경과 색을 맞춰줘야한다. */
-  background-color: #397fb3;
+  background-color: #935d8c;
   
   /* ? 일반적 텍스트 색이 변한다. */
   color: rgba(255, 255, 255, 0.65);
@@ -156,7 +169,7 @@ input, select, textarea {
 		@media screen and (max-width: 1680px) {
 
 			body, input, select, textarea {
-				font-size: 14pt;
+				font-size: 15pt;
 			}
 
 		}
@@ -219,8 +232,8 @@ input, select, textarea {
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 300;
 		line-height: 1.5;
-		margin: 0 0 0.7em 0;
-		letter-spacing: -0.025em;
+		/* margin: 0 0 0.7em 0; */
+		letter-spacing: -0.0025em;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -230,11 +243,12 @@ input, select, textarea {
 
 	h1 {
 		font-size: 3.5em;
-		line-height: 1.2;
+		/* line-height: 1.2; */
 	}
 
 	h2 {
 		font-size: 1.5em;
+		margin: 0 0 0.7em 0;
 	}
 
 	h3 {
@@ -2552,7 +2566,9 @@ input, select, textarea {
 			vertical-align: middle;
 		}
 
+		/* ! 메시지 보내기 버튼 밑 이메일 보내는 영역관리 */
 		ul.actions.special {
+			
 			-moz-justify-content: center;
 			-webkit-justify-content: center;
 			-ms-justify-content: center;
@@ -3099,7 +3115,7 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			.spotlight .image {
-				padding: 0.35em;
+				padding:4em;
 			}
 
 				.spotlight .image img {
@@ -3881,6 +3897,20 @@ input, select, textarea {
 
 
 
+	 .survey-finish-button{
+		font-size: 30px;
+		/* margin-bottom: 5%; */
+		background-color: black;
+		border : 2px solid white;
+		border-top-left-radius: 30px;
+		border-top-right-radius: 30px;
+		border-bottom-right-radius: 30px;
+		border-bottom-left-radius: 30px;
+	}
+	
+	
+
+
 
 /* !다음 버튼 핸들링 */
     .next_button {
@@ -3984,8 +4014,8 @@ input, select, textarea {
 
 /* !라디오 버튼 form */
 div.radio-wrap {
-  margin-top: 8px;
-  margin: 8px;
+  margin-top: 18px;
+
   display: inline-flex;
   align-items: center;
 }
@@ -3997,7 +4027,7 @@ div.radio-wrap {
   /* font-family: 'Lacquer', sans-serif; */
   /* font-family: 'Gloria Hallelujah', cursive; */
   font-family: 'Nanum Pen Script', cursive;
-  margin-Top: 70px;
+  margin-Top: 10px;
   font-size : 8em;
 }
 
@@ -4027,5 +4057,222 @@ div.radio-wrap {
  font-size: 57px;
  color : black;
 }
+.logOut{
+	margin-left: 5%;
+	font-family: 'Nanum Pen Script', cursive;
+	margin-top: 10%;
+	font-size: 50px;
+}
+
+/* !로그인 버튼  */
+.mlogin-btn{
+	font-size: 20px;
+	margin-top: 3%;
+	font-size: 30px;
+	font-family: 'Nanum Pen Script', cursive;
+	background-color: black;
+
+}
+
+/* !메인 이미지 */
+.main-img{
+  width: 700px;
+  height: 500px;
+  margin-bottom: 0.3%;
+}
+
+
+.result_username{
+    width: 40%;	
+    float: right;
+}
+.user_name{
+font-family: 'Nanum Pen Script', cursive;
+	margin-top: 10%;
+	font-size: 50px;
+}
+
+.job_user_name{
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 50px;
+	}
+
+.sendMessage{
+  background-color: black;
+  color: white;
+}
+
+.closeMessage{
+	background-color: black;
+	color: white;
+}
+
+.actionsspecial{
+  background-color: red;
+}
+
+
+.job_content{
+ margin-top: 3%;
+}
+
+.signn{
+	margin-top: 5%;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+
+.linkSignup{
+	margin-right: 3%;
+	font-size: 20px;
+	margin-bottom: 25%;
+}
+
+.nonlinkSignup{
+	margin-left: 3%;
+	font-size: 20px;
+	margin-bottom: 25%;
+}
+
+.fighting{
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+
+.signupPLZ{
+color: white;
+font-family: 'Nanum Pen Script', cursive;
+
+}
+
+.nonsignupPLZ{
+color: white;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+.non_id{
+	color: white;
+font-family: 'Nanum Pen Script', cursive;
+font-size: 40px;
+}
+
+.non_age{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup_id{
+color: white;
+font-family: 'Nanum Pen Script', cursive;
+font-size: 40px;
+}
+
+.signup-id{
+	margin-bottom: 1%;
+}
+
+
+.signup_pw{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup-password2{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+
+
+.signup_name{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup_mobile{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup_email{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup_gen{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 30px;
+}
+
+.signup_genm{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 30px;
+}
+
+.signup_genf{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 30px;
+}
+
+.signup_age{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup_home{
+	margin-top: 2%;
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.signup-btn {
+	font-size: 20px;
+	margin-top: 0.8%;
+	font-size: 30px;
+	font-family: 'Nanum Pen Script', cursive;
+	background-color: black;
+  }
+
+.mypage-name{
+	margin-top: 2%;
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.mypage-age{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.mypage-gender{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+.mypage-moblie{
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+}
+
+
+
+
 
 /* !! 수요일 최종수정(겹치는 부분들 제거) ---by 성용 */
