@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import styled from "styled-components";
 import heart from "../images/heart.png";
 
+
 axios.defaults.withCredentials = true;
 class MainSurvey extends Component {
   // constructor(props) 와 super 를 만듬.
@@ -398,6 +399,8 @@ class MainSurvey extends Component {
       //!===========================================================================
     } else if (question_data) {
       return (
+      
+       
         <div className="App">
           {/* //! 질문지 폼 */}
 
@@ -415,11 +418,11 @@ class MainSurvey extends Component {
 
           <form className="question-form">
             <fieldset className="question-fieldset">
-              <legend>DreamMaker가 여러분의 꿈을 응원합니다!</legend>
+              <legend className="fighting">DreamMaker가 '{username}' 님 의 꿈을 응원합니다!</legend>
               <center>
                 {/*  질문이 들어갈 곳  */}
                 <h1>
-                  Q{currentQuestion + 1}. {username}님은 {this.state.questions}{" "}
+                  Q{currentQuestion + 1}. [{username}] 님은 {this.state.questions}{" "}
                 </h1>
 
                 {/* 총 질문 중에 몇번째 질문인지 
@@ -528,6 +531,7 @@ class MainSurvey extends Component {
           {/* </form> */}
           </div>
         </div>
+       
       );
     } else if (question_data === null) {
       return <div className="App">되었어요...</div>;
