@@ -37,17 +37,18 @@ function Modal ({ isOpen, close }) {
           <div className="content">
           <form className="contact-form" onSubmit={sendEmail}>
       <input type="hidden" name="contact_number" />
+      <input type="hidden" name="to_name" />
       <label>이름</label>
-      <input type="text" name="to_name" placeholder="드림메이커" value="드림메이커"/>
+      <input type="text" name="to_name" placeholder="이름을 입력해주세요" />
       <label>이메일 주소</label>
-      <input type="email" name="from_name" placeholder="dreamMaker@mail.com" value="dreamMaker@mail.com"/>
-      <label>메시지 입력하기</label>
-      <textarea name="message_html"></textarea>
+      <input type="email" name="from_name" placeholder="연락받고 싶은 메일 주소를 입력해주세요"/>
+      <label>내용 입력하기</label>
+      <textarea name="message_html" placeholder="상담받고 싶은 내용을 입력해주세요"></textarea>
     
         
           <div className="button-wrap">
-            <button type="submit"onClick={close}>보내기완료</button>
-            <button onClick={close}>접기</button>
+            <button className="sendMessage" type="submit"onClick={close}>보내기완료</button>
+            <button className="closeMessage" onClick={close}>접기</button>
           </div>
           </form>
           </div>

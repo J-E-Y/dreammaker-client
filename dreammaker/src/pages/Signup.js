@@ -132,7 +132,7 @@ class Signup extends React.Component {
     return (
       <div>
         <center>
-          <h1 style={{ color: "white" }}>회원가입을 해주세요</h1>
+          <h1 className="signupPLZ">회원가입을 해주세요</h1>
           <form
             onSubmit={e => {
               e.preventDefault();
@@ -207,7 +207,7 @@ class Signup extends React.Component {
                 });
             }}
           >
-            <div>
+            <div className="signup_id">
               아이디
               <input
                 className="signup-id"
@@ -218,16 +218,21 @@ class Signup extends React.Component {
                 <span
                   className="checkPassword"
                   style={{
-                    fontSize: "20px",
+                    width: "20%",
+                    fontSize: "30px",
+                    
+                    border: `4px solid black`,
                     color: this.state.idshowStore ? "blue" : "red",
-                    display: this.state.showStore2 ? "block" : "none"
+                    backgroundColor: this.state.idshowStore ? "white" : "white",
+                    display: this.state.showStore2 ? "block" : "none",
+                    fontFamily:`Nanum Pen Script, cursive`
                   }}
                 >
                   {this.state.idMessage}
                 </span>
               }
             </div>
-            <div>
+            <div className="signup_pw">
               비밀번호
               <input
                 className="signup-password"
@@ -235,7 +240,7 @@ class Signup extends React.Component {
                 onChange={this.handleInputValue("password1")}
               ></input>
             </div>
-            <div>
+            <div className="signup-password2">
               비밀번호 확인
               <input
                 className="signup-cofirm-password"
@@ -256,15 +261,17 @@ class Signup extends React.Component {
             <span
               className="success"
               style={{
-                fontSize: "20px",
+                fontSize: "30px",
                 color: "red",
-                display: this.state.showStore ? "none" : "block"
+                display: this.state.showStore ? "none" : "block",
+                width: "20%",
+                fontFamily:`Nanum Pen Script, cursive`
               }}
             >
               {this.state.passwordMessage}
             </span>
 
-            <div>
+            <div className="signup_name">
               이름
               <input
                 className="signup-name"
@@ -272,7 +279,7 @@ class Signup extends React.Component {
                 onChange={this.handleInputValue("name")}
               ></input>
             </div>
-            <div>
+            <div className="signup_mobile">
               휴대폰 번호
               <input
                 className="signup-mobile"
@@ -280,7 +287,7 @@ class Signup extends React.Component {
                 onChange={this.handleInputValue("moblie")}
               ></input>
             </div>
-            <div>
+            <div className="signup_email">
               이메일 주소
               <input
                 className="signup-email"
@@ -290,16 +297,16 @@ class Signup extends React.Component {
             </div>
 
             <div className="radio-wrap">
-              <div onChange={this.setGender.bind(this)}>
+              <div className="signup_gen" onChange={this.setGender.bind(this)}>
                 성별 :
-                <input id="gender1" type="radio" value="남" name="gender" />
-                <label htmlFor="gender1">남</label>
-                <input id="gender2" type="radio" value="여" name="gender" />
-                <label htmlFor="gender2">여</label>
+                <input  id="gender1" type="radio" value="남" name="gender" />
+                <label className="signup_genm" htmlFor="gender1">남</label>
+                <input  id="gender2" type="radio" value="여" name="gender" />
+                <label className="signup_genf" htmlFor="gender2">여</label>
               </div>
             </div>
 
-            <div>
+            <div className="signup_age">
               나이
               <input
                 className="signup-age"
@@ -308,7 +315,7 @@ class Signup extends React.Component {
               ></input>
             </div>
 
-            <div>
+            <div className="signup_home">
               <Link to="/login">홈으로 가기</Link>
             </div>
 
