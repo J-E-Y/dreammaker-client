@@ -159,14 +159,15 @@ openModal = () => {
 
     return (
       <div id="wrapper">
-        <div className="result_username">
-          <span className="user_name">{this.props.username}</span>
-          <span className="logOut">
-          {/* <div style={{ paddingLeft: "1600px" }}> */}
-            {/* <span>{username}</span>
-            <span style={{margin: "15px",fontSize: "25px"}}> */}
-              <Link to="/logout">로그아웃</Link>
-            {/* </span> */}
+        <div style={{ paddingLeft: "1600px" }}>
+          <span>{this.props.username}</span>
+          <span
+            style={{
+              margin: "15px",
+              fontSize: "15px"
+            }}
+          >
+            <Link to="/logout">로그아웃하기</Link>
           </span>
         </div>
         {/* 
@@ -175,7 +176,7 @@ openModal = () => {
           <span className="logo">
             <img src={Logo} alt="" />
           </span>
-          <h1 className="user_name">
+          <h1>
             {this.props.username}님의 검사 결과는 {hol_title}입니다.
           </h1>
           <p>DreamMaker와 여러분의 꿈을 찾아보아요</p>
@@ -193,7 +194,7 @@ openModal = () => {
               <a href="#first">직업</a>
             </li>
             <li>
-              <a href="#cta">메일 보내기</a>
+              <a href="#cta">그 밖에</a>
             </li>
           </ul>
         </nav>
@@ -222,13 +223,13 @@ openModal = () => {
           <section id="first" className="main special">
             {/* //! major : css-> 배경색으로 된 밑줄 관련 클래스 입니다. */}
             <header className="major">
-            <h1 className="job_user_name">
-              {this.props.username} 님께 추천드려요 - {hol_title} 타입에 어울리는 직업은?
-              </h1>
+              <h2>
+                여기는 추천 직업 공간 - {hol_title} 타입에 어울리는 직업은?
+              </h2>
             </header>
             <ul className="features">
               <li>
-                <span className="icon major style5">
+                <span className="icon solid major style1 fa-code">
                   <img
                     src={this.state.hol_jobs_image1}
                     alt={this.state.hol_jobs_name1}
@@ -239,12 +240,12 @@ openModal = () => {
 
                   {/* // Todo 배열로 된 직업 내용들을 풀어야 한다.  */}
                 </span>
-                <h2>{this.state.hol_jobs_name1}</h2>
-                <p className="job_content">{this.state.hol_jobs_detail1}</p>
+                <h3>{this.state.hol_jobs_name1}</h3>
+                <p>{this.state.hol_jobs_detail1}</p>
               </li>
 
               <li>
-                <span className="icon major style5">
+                <span className="icon major style3 fa-copy">
                   <img
                     src={this.state.hol_jobs_image2}
                     alt={this.state.hol_jobs_name2}
@@ -253,11 +254,11 @@ openModal = () => {
                     style={{ objectFit: "fill", borderRadius: "50%" }}
                   />
                 </span>
-                <h2>{this.state.hol_jobs_name2}</h2>
-                <p className="job_content">{this.state.hol_jobs_detail2}</p>
+                <h3>{this.state.hol_jobs_name2}</h3>
+                <p>{this.state.hol_jobs_detail2}</p>
               </li>
               <li>
-                <span className="icon major style5 ">
+                <span className="icon major style5 fa-gem">
                   <img
                     src={this.state.hol_jobs_image3}
                     alt={this.state.hol_jobs_name3}
@@ -266,8 +267,8 @@ openModal = () => {
                     style={{ objectFit: "fill", borderRadius: "50%" }}
                   />
                 </span>
-                <h2>{this.state.hol_jobs_name3}</h2>
-                <p className="job_content">{this.state.hol_jobs_detail3}</p>
+                <h3>{this.state.hol_jobs_name3}</h3>
+                <p>{this.state.hol_jobs_detail3}</p>
               </li>
             </ul>
           </section>
@@ -277,16 +278,16 @@ openModal = () => {
           {/* <!-- Get Started --> */}
           <section id="cta" className="main special">
             <header className="major">
-            <h2 className="job_user_name">도움이 필요한가요??</h2>
+              <h2>도움이 필요한가요??</h2>
               <p>
-                검사를 해도 망설이고 계시는 <h1 style={{fontFamily:`Nanum Pen Script, cursive`,  fontSize :'50px'}}>{this.props.username}님</h1>  이젠 전문가에게 질문을 해보세요!
+                검사를 해도 어려운 당신! 전문가에게 질문을 해보세요!
                 <br />
               </p>
             </header>
             <footer className="major">
               <ul className="actions special">
                 <li>
-                <button className="send_m" onClick={this.openModal}>메일 보내기</button>
+                <button className="send_m" onClick={this.openModal}>메시지 보내기</button>
                 <Modal 
                 isOpen={this.state.isModalOpen} 
                 close={this.closeModal} />
@@ -297,7 +298,7 @@ openModal = () => {
             </footer>
           </section>
         </div>
-        <h1 style={{fontFamily:`Nanum Pen Script, cursive`,  fontSize :'50px'}}>Made by Dreammaker</h1>
+        <h1 className="last-name"> Made by Dreammaker</h1>
       </div>
     );
   }
