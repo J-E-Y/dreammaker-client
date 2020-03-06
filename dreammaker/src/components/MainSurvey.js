@@ -494,7 +494,7 @@ class MainSurvey extends Component {
                   // 여기서 이전 질문 핸들러가 된다.
                   onClick={this.prevQuestionHandler}
                 >
-                  이전 질문
+                  이전 질문 
                 </button>
               )}
 
