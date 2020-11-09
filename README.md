@@ -1,46 +1,39 @@
-# dreammaker-client
+# Dreammaker-client
 
+### Description
 
-# 소개 
+This project that finds dreams and helps their decision what to do for young people for their future through question I made like Aptitude test
 
-> 어린 친구들이 성적이나 환경에 따라 자신만의 개성없이 진로를 정하게 되는 것을 막기 위해 심리 검사 등을 통해서 어린 친구들에게 각자에게 맞는 꿈을 찾아주는 프로젝트
+### Stack
 
-# 기술 스택
+Overall we used `React` for Client. `Node.JS` for Server
 
-* Front End	React,templated
-* Back End	express,mysql,nodejs,sequelize
-* Etc	api,eslint,prettier,redux
+**Client**
 
-# 시연영상
+React / templated / css / react-router-dom
 
-#### 회원가입
+**Server**
 
-![회원가입](https://user-images.githubusercontent.com/47516835/76293401-4ce77180-62f4-11ea-8c69-1aad0008b061.gif)
+Node.js / express / MySQL / sequelize
 
+**Deploy**
 
+AWS - S3, EC2, RDS
 
-#### 비회원 가입
+### Preview
 
-![비회원가입](https://user-images.githubusercontent.com/47516835/76293810-1100dc00-62f5-11ea-9242-9c0997a6cce0.gif)
+**Signup**
 
+![회원가입](https://user-images.githubusercontent.com/47516835/81059855-41877f80-8f0c-11ea-9923-34d3dd4af14d.gif)
 
-#### 구글 로그인
+**Non-User-Signup**
 
-![구글로그인](https://user-images.githubusercontent.com/47516835/76293858-2a098d00-62f5-11ea-812b-b7beed9ff37f.gif)
+![비회원가입](https://user-images.githubusercontent.com/47516835/81059858-43514300-8f0c-11ea-9c47-2366a4de708e.gif)
 
+**Google Login**
 
-#### 질문지 작성 및 제출
+![구글 로그인](https://user-images.githubusercontent.com/47516835/81059863-45b39d00-8f0c-11ea-85cc-5e94522f1b05.gif)
 
-![질문지응답후 제출](https://user-images.githubusercontent.com/47516835/76293929-4c9ba600-62f5-11ea-85bc-96880aea6f11.gif)
+**Filling out and submitting the questionnaire**
 
-
-#### 이메일 보내기
-
-
-![질문지응답후 제출](https://user-images.githubusercontent.com/47516835/76293929-4c9ba600-62f5-11ea-85bc-96880aea6f11.gif)
-
-
-
-
-
-
+![설문지](https://user-images.githubusercontent.com/47516835/81060661-dfc81500-8f0d-11ea-921f-b806667c3fcd.gif)
